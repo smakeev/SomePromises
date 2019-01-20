@@ -1,0 +1,16 @@
+//
+//  SomeNews-Prefix.pch
+//  SomeNews
+//
+//  Created by Sergey Makeev on 11/09/2018.
+//  Copyright © 2018 SOME projects. All rights reserved.
+//
+
+#import "AppDelegate.h"
+#import "SomePromise.h"
+#import "Constants.h"
+#import "ServicesProviderProtocol.h"
+#import "NetServiceProviderProtocol.h"
+#import "UserServiceProviderProtocol.h"
+#import "NetworkIndicatorService.h"
+#import "ImageCashService.h"

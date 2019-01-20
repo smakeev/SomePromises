@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B617AADE21D6A7140088375A /* SPAsyncAwait.m in Sources */ = {isa = PBXBuildFile; fileRef = B617AADD21D6A7140088375A /* SPAsyncAwait.m */; };
+		B62171F221C965040064AB9C /* SomePromiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B62171F121C965040064AB9C /* SomePromiseGenerator.m */; };
+		B62171F521C969940064AB9C /* GeneratorTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62171F421C969940064AB9C /* GeneratorTestViewController.m */; };
+		B626ED2F21AEFDBC00C81BF2 /* SomePromiseFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = B626ED2E21AEFDBC00C81BF2 /* SomePromiseFunctor.m */; };
+		B626ED3221AEFF8C00C81BF2 /* TestFunctors.m in Sources */ = {isa = PBXBuildFile; fileRef = B626ED3121AEFF8C00C81BF2 /* TestFunctors.m */; };
+		B63129E721432DEA00CFB6E2 /* SomePromiseThread.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298421432DEA00CFB6E2 /* SomePromiseThread.m */; };
+		B63129E821432DEA00CFB6E2 /* SomePromiseLocContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298521432DEA00CFB6E2 /* SomePromiseLocContainer.m */; };
+		B63129E921432DEA00CFB6E2 /* SomePromiseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298621432DEA00CFB6E2 /* SomePromiseObject.m */; };
+		B63129EA21432DEA00CFB6E2 /* SomePromiseMayBe.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298A21432DEA00CFB6E2 /* SomePromiseMayBe.m */; };
+		B63129EB21432DEA00CFB6E2 /* SomePromiseUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298C21432DEA00CFB6E2 /* SomePromiseUtils.m */; };
+		B63129EC21432DEA00CFB6E2 /* SomePromiseExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298E21432DEA00CFB6E2 /* SomePromiseExtend.m */; };
+		B63129ED21432DEA00CFB6E2 /* SomePromise+SomePromise_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B631298F21432DEA00CFB6E2 /* SomePromise+SomePromise_Helper.m */; };
+		B63129EE21432DEA00CFB6E2 /* SomePromiseTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299121432DEA00CFB6E2 /* SomePromiseTypes.m */; };
+		B63129EF21432DEA00CFB6E2 /* SomePromise.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299321432DEA00CFB6E2 /* SomePromise.m */; };
+		B63129F021432DEA00CFB6E2 /* SomePromiseDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299421432DEA00CFB6E2 /* SomePromiseDataStream.m */; };
+		B63129F121432DEA00CFB6E2 /* SomePromiseFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299521432DEA00CFB6E2 /* SomePromiseFuture.m */; };
+		B63129F221432DEA00CFB6E2 /* SomePromiseEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299921432DEA00CFB6E2 /* SomePromiseEvents.m */; };
+		B63129F321432DEA00CFB6E2 /* SomePromiseSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299B21432DEA00CFB6E2 /* SomePromiseSignal.m */; };
+		B63129F421432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B631299E21432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m */; };
+		B63129F521432DEA00CFB6E2 /* EighthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A321432DEA00CFB6E2 /* EighthViewController.m */; };
+		B63129F621432DEA00CFB6E2 /* SPFabricTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A421432DEA00CFB6E2 /* SPFabricTestViewController.m */; };
+		B63129F721432DEA00CFB6E2 /* ChainOnThreadTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A521432DEA00CFB6E2 /* ChainOnThreadTestViewController.m */; };
+		B63129F821432DEA00CFB6E2 /* EleventhViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A621432DEA00CFB6E2 /* EleventhViewController.m */; };
+		B63129F921432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A721432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.m */; };
+		B63129FA21432DEA00CFB6E2 /* SPObjectTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A821432DEA00CFB6E2 /* SPObjectTestViewController.m */; };
+		B63129FB21432DEA00CFB6E2 /* HelperTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129A921432DEA00CFB6E2 /* HelperTestViewController.m */; };
+		B63129FC21432DEA00CFB6E2 /* ClassBoxTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129AA21432DEA00CFB6E2 /* ClassBoxTestViewController.m */; };
+		B63129FD21432DEA00CFB6E2 /* NinethViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129AB21432DEA00CFB6E2 /* NinethViewController.m */; };
+		B63129FE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129AE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m */; };
+		B63129FF21432DEA00CFB6E2 /* SPDataStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B221432DEA00CFB6E2 /* SPDataStreamViewController.m */; };
+		B6312A0021432DEA00CFB6E2 /* ThirdTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B321432DEA00CFB6E2 /* ThirdTestViewController.m */; };
+		B6312A0121432DEA00CFB6E2 /* AfterExecuteTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B521432DEA00CFB6E2 /* AfterExecuteTestViewController.m */; };
+		B6312A0221432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B621432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.m */; };
+		B6312A0321432DEA00CFB6E2 /* FirstTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B821432DEA00CFB6E2 /* FirstTestViewController.m */; };
+		B6312A0421432DEA00CFB6E2 /* FutureObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129B921432DEA00CFB6E2 /* FutureObjectViewController.m */; };
+		B6312A0521432DEA00CFB6E2 /* EventsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129BA21432DEA00CFB6E2 /* EventsTestViewController.m */; };
+		B6312A0621432DEA00CFB6E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63129BB21432DEA00CFB6E2 /* Assets.xcassets */; };
+		B6312A0721432DEA00CFB6E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63129C021432DEA00CFB6E2 /* LaunchScreen.storyboard */; };
+		B6312A0821432DEA00CFB6E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63129C221432DEA00CFB6E2 /* Main.storyboard */; };
+		B6312A0921432DEA00CFB6E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129CB21432DEA00CFB6E2 /* main.m */; };
+		B6312A0A21432DEA00CFB6E2 /* DeferTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129CD21432DEA00CFB6E2 /* DeferTestViewController.m */; };
+		B6312A0B21432DEA00CFB6E2 /* FifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129CE21432DEA00CFB6E2 /* FifthViewController.m */; };
+		B6312A0C21432DEA00CFB6E2 /* ChainTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D221432DEA00CFB6E2 /* ChainTestViewController.m */; };
+		B6312A0D21432DEA00CFB6E2 /* TenthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D421432DEA00CFB6E2 /* TenthViewController.m */; };
+		B6312A0E21432DEA00CFB6E2 /* SixthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D521432DEA00CFB6E2 /* SixthViewController.m */; };
+		B6312A0F21432DEA00CFB6E2 /* SeventhViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D621432DEA00CFB6E2 /* SeventhViewController.m */; };
+		B6312A1021432DEA00CFB6E2 /* PropertyAfterTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D721432DEA00CFB6E2 /* PropertyAfterTestViewController.m */; };
+		B6312A1121432DEA00CFB6E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129D921432DEA00CFB6E2 /* AppDelegate.m */; };
+		B6312A1221432DEA00CFB6E2 /* SecondTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E121432DEA00CFB6E2 /* SecondTestViewController.m */; };
+		B6312A1421432DEA00CFB6E2 /* RetryTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E321432DEA00CFB6E2 /* RetryTestViewController.m */; };
+		B6312A1521432DEA00CFB6E2 /* SettingsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E421432DEA00CFB6E2 /* SettingsTestViewController.m */; };
+		B6312A1621432DEA00CFB6E2 /* ExtendTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */; };
+		B6312A1721432DEA00CFB6E2 /* ForthTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B617AADD21D6A7140088375A /* SPAsyncAwait.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAsyncAwait.m; sourceTree = "<group>"; };
+		B62171F021C965040064AB9C /* SomePromiseGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomePromiseGenerator.h; sourceTree = "<group>"; };
+		B62171F121C965040064AB9C /* SomePromiseGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomePromiseGenerator.m; sourceTree = "<group>"; };
+		B62171F321C969940064AB9C /* GeneratorTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratorTestViewController.h; sourceTree = "<group>"; };
+		B62171F421C969940064AB9C /* GeneratorTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneratorTestViewController.m; sourceTree = "<group>"; };
+		B626ED2D21AEFDBC00C81BF2 /* SomePromiseFunctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomePromiseFunctor.h; sourceTree = "<group>"; };
+		B626ED2E21AEFDBC00C81BF2 /* SomePromiseFunctor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomePromiseFunctor.m; sourceTree = "<group>"; };
+		B626ED3021AEFF8C00C81BF2 /* TestFunctors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFunctors.h; sourceTree = "<group>"; };
+		B626ED3121AEFF8C00C81BF2 /* TestFunctors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestFunctors.m; sourceTree = "<group>"; };
+		B631298321432DEA00CFB6E2 /* SomePromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromise.h; sourceTree = "<group>"; };
+		B631298421432DEA00CFB6E2 /* SomePromiseThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseThread.m; sourceTree = "<group>"; };
+		B631298521432DEA00CFB6E2 /* SomePromiseLocContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseLocContainer.m; sourceTree = "<group>"; };
+		B631298621432DEA00CFB6E2 /* SomePromiseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseObject.m; sourceTree = "<group>"; };
+		B631298721432DEA00CFB6E2 /* SomePromiseDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseDataStream.h; sourceTree = "<group>"; };
+		B631298821432DEA00CFB6E2 /* SomePromiseInternals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseInternals.h; sourceTree = "<group>"; };
+		B631298921432DEA00CFB6E2 /* SomePromiseFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseFuture.h; sourceTree = "<group>"; };
+		B631298A21432DEA00CFB6E2 /* SomePromiseMayBe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseMayBe.m; sourceTree = "<group>"; };
+		B631298B21432DEA00CFB6E2 /* SomePromiseSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseSignal.h; sourceTree = "<group>"; };
+		B631298C21432DEA00CFB6E2 /* SomePromiseUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseUtils.m; sourceTree = "<group>"; };
+		B631298D21432DEA00CFB6E2 /* SomePromiseEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseEvents.h; sourceTree = "<group>"; };
+		B631298E21432DEA00CFB6E2 /* SomePromiseExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseExtend.m; sourceTree = "<group>"; };
+		B631298F21432DEA00CFB6E2 /* SomePromise+SomePromise_Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SomePromise+SomePromise_Helper.m"; sourceTree = "<group>"; };
+		B631299021432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseChainMethodsExecutorStrategy.h; sourceTree = "<group>"; };
+		B631299121432DEA00CFB6E2 /* SomePromiseTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseTypes.m; sourceTree = "<group>"; };
+		B631299221432DEA00CFB6E2 /* SomePromiseThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseThread.h; sourceTree = "<group>"; };
+		B631299321432DEA00CFB6E2 /* SomePromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromise.m; sourceTree = "<group>"; };
+		B631299421432DEA00CFB6E2 /* SomePromiseDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseDataStream.m; sourceTree = "<group>"; };
+		B631299521432DEA00CFB6E2 /* SomePromiseFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseFuture.m; sourceTree = "<group>"; };
+		B631299621432DEA00CFB6E2 /* SomePromiseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseObject.h; sourceTree = "<group>"; };
+		B631299721432DEA00CFB6E2 /* SomePromiseLocContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseLocContainer.h; sourceTree = "<group>"; };
+		B631299821432DEA00CFB6E2 /* SomePromiseExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseExtend.h; sourceTree = "<group>"; };
+		B631299921432DEA00CFB6E2 /* SomePromiseEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseEvents.m; sourceTree = "<group>"; };
+		B631299A21432DEA00CFB6E2 /* SomePromiseUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseUtils.h; sourceTree = "<group>"; };
+		B631299B21432DEA00CFB6E2 /* SomePromiseSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseSignal.m; sourceTree = "<group>"; };
+		B631299C21432DEA00CFB6E2 /* SomePromiseMayBe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseMayBe.h; sourceTree = "<group>"; };
+		B631299D21432DEA00CFB6E2 /* SomePromiseTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseTypes.h; sourceTree = "<group>"; };
+		B631299E21432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseChainMethodsExecutorStrategy.m; sourceTree = "<group>"; };
+		B63129A121432DEA00CFB6E2 /* FifthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FifthViewController.h; sourceTree = "<group>"; };
+		B63129A221432DEA00CFB6E2 /* DeferTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferTestViewController.h; sourceTree = "<group>"; };
+		B63129A321432DEA00CFB6E2 /* EighthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EighthViewController.m; sourceTree = "<group>"; };
+		B63129A421432DEA00CFB6E2 /* SPFabricTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFabricTestViewController.m; sourceTree = "<group>"; };
+		B63129A521432DEA00CFB6E2 /* ChainOnThreadTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChainOnThreadTestViewController.m; sourceTree = "<group>"; };
+		B63129A621432DEA00CFB6E2 /* EleventhViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EleventhViewController.m; sourceTree = "<group>"; };
+		B63129A721432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutThreadStopTestViewController.m; sourceTree = "<group>"; };
+		B63129A821432DEA00CFB6E2 /* SPObjectTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPObjectTestViewController.m; sourceTree = "<group>"; };
+		B63129A921432DEA00CFB6E2 /* HelperTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTestViewController.m; sourceTree = "<group>"; };
+		B63129AA21432DEA00CFB6E2 /* ClassBoxTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBoxTestViewController.m; sourceTree = "<group>"; };
+		B63129AB21432DEA00CFB6E2 /* NinethViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinethViewController.m; sourceTree = "<group>"; };
+		B63129AC21432DEA00CFB6E2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B63129AD21432DEA00CFB6E2 /* PropertyAfterTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyAfterTestViewController.h; sourceTree = "<group>"; };
+		B63129AE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomePromiseThreadTestViewController.m; sourceTree = "<group>"; };
+		B63129AF21432DEA00CFB6E2 /* SeventhViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeventhViewController.h; sourceTree = "<group>"; };
+		B63129B021432DEA00CFB6E2 /* SixthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SixthViewController.h; sourceTree = "<group>"; };
+		B63129B121432DEA00CFB6E2 /* TenthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenthViewController.h; sourceTree = "<group>"; };
+		B63129B221432DEA00CFB6E2 /* SPDataStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDataStreamViewController.m; sourceTree = "<group>"; };
+		B63129B321432DEA00CFB6E2 /* ThirdTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTestViewController.m; sourceTree = "<group>"; };
+		B63129B421432DEA00CFB6E2 /* ChainTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChainTestViewController.h; sourceTree = "<group>"; };
+		B63129B521432DEA00CFB6E2 /* AfterExecuteTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterExecuteTestViewController.m; sourceTree = "<group>"; };
+		B63129B621432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDataStreamGrouppingTestViewController.m; sourceTree = "<group>"; };
+		B63129B721432DEA00CFB6E2 /* SecondTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondTestViewController.h; sourceTree = "<group>"; };
+		B63129B821432DEA00CFB6E2 /* FirstTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTestViewController.m; sourceTree = "<group>"; };
+		B63129B921432DEA00CFB6E2 /* FutureObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FutureObjectViewController.m; sourceTree = "<group>"; };
+		B63129BA21432DEA00CFB6E2 /* EventsTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTestViewController.m; sourceTree = "<group>"; };
+		B63129BB21432DEA00CFB6E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B63129BC21432DEA00CFB6E2 /* ForthTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForthTestViewController.h; sourceTree = "<group>"; };
+		B63129BD21432DEA00CFB6E2 /* SettingsTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTestViewController.h; sourceTree = "<group>"; };
+		B63129BE21432DEA00CFB6E2 /* ExtendTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendTestViewController.h; sourceTree = "<group>"; };
+		B63129BF21432DEA00CFB6E2 /* RetryTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetryTestViewController.h; sourceTree = "<group>"; };
+		B63129C121432DEA00CFB6E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B63129C321432DEA00CFB6E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B63129C421432DEA00CFB6E2 /* ClassBoxTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBoxTestViewController.h; sourceTree = "<group>"; };
+		B63129C521432DEA00CFB6E2 /* HelperTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTestViewController.h; sourceTree = "<group>"; };
+		B63129C621432DEA00CFB6E2 /* SPObjectTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPObjectTestViewController.h; sourceTree = "<group>"; };
+		B63129C721432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutThreadStopTestViewController.h; sourceTree = "<group>"; };
+		B63129C821432DEA00CFB6E2 /* ChainOnThreadTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChainOnThreadTestViewController.h; sourceTree = "<group>"; };
+		B63129C921432DEA00CFB6E2 /* EleventhViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EleventhViewController.h; sourceTree = "<group>"; };
+		B63129CA21432DEA00CFB6E2 /* SPFabricTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFabricTestViewController.h; sourceTree = "<group>"; };
+		B63129CB21432DEA00CFB6E2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B63129CC21432DEA00CFB6E2 /* EighthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EighthViewController.h; sourceTree = "<group>"; };
+		B63129CD21432DEA00CFB6E2 /* DeferTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferTestViewController.m; sourceTree = "<group>"; };
+		B63129CE21432DEA00CFB6E2 /* FifthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FifthViewController.m; sourceTree = "<group>"; };
+		B63129CF21432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDataStreamGrouppingTestViewController.h; sourceTree = "<group>"; };
+		B63129D021432DEA00CFB6E2 /* AfterExecuteTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterExecuteTestViewController.h; sourceTree = "<group>"; };
+		B63129D121432DEA00CFB6E2 /* ThirdTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdTestViewController.h; sourceTree = "<group>"; };
+		B63129D221432DEA00CFB6E2 /* ChainTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChainTestViewController.m; sourceTree = "<group>"; };
+		B63129D321432DEA00CFB6E2 /* SPDataStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDataStreamViewController.h; sourceTree = "<group>"; };
+		B63129D421432DEA00CFB6E2 /* TenthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenthViewController.m; sourceTree = "<group>"; };
+		B63129D521432DEA00CFB6E2 /* SixthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SixthViewController.m; sourceTree = "<group>"; };
+		B63129D621432DEA00CFB6E2 /* SeventhViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeventhViewController.m; sourceTree = "<group>"; };
+		B63129D721432DEA00CFB6E2 /* PropertyAfterTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyAfterTestViewController.m; sourceTree = "<group>"; };
+		B63129D821432DEA00CFB6E2 /* SomePromiseThreadTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomePromiseThreadTestViewController.h; sourceTree = "<group>"; };
+		B63129D921432DEA00CFB6E2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B63129DA21432DEA00CFB6E2 /* NinethViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NinethViewController.h; sourceTree = "<group>"; };
+		B63129DB21432DEA00CFB6E2 /* EventsTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTestViewController.h; sourceTree = "<group>"; };
+		B63129DC21432DEA00CFB6E2 /* FutureObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FutureObjectViewController.h; sourceTree = "<group>"; };
+		B63129DD21432DEA00CFB6E2 /* FirstTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTestViewController.h; sourceTree = "<group>"; };
+		B63129DE21432DEA00CFB6E2 /* SomePromises.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SomePromises.xcodeproj; sourceTree = "<group>"; };
+		B63129E121432DEA00CFB6E2 /* SecondTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondTestViewController.m; sourceTree = "<group>"; };
+		B63129E221432DEA00CFB6E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B63129E321432DEA00CFB6E2 /* RetryTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetryTestViewController.m; sourceTree = "<group>"; };
+		B63129E421432DEA00CFB6E2 /* SettingsTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTestViewController.m; sourceTree = "<group>"; };
+		B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendTestViewController.m; sourceTree = "<group>"; };
+		B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForthTestViewController.m; sourceTree = "<group>"; };
+		B65DA7342003E76900BC124F /* SomePromises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SomePromises.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F8059821D2B24D00310E34 /* SPAsyncAwait.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAsyncAwait.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B65DA7312003E76900BC124F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B631298121432DEA00CFB6E2 /* Promises */ = {
+			isa = PBXGroup;
+			children = (
+				B631298221432DEA00CFB6E2 /* Objective-c */,
+			);
+			name = Promises;
+			path = ../../Promises;
+			sourceTree = "<group>";
+		};
+		B631298221432DEA00CFB6E2 /* Objective-c */ = {
+			isa = PBXGroup;
+			children = (
+				B631298321432DEA00CFB6E2 /* SomePromise.h */,
+				B631299321432DEA00CFB6E2 /* SomePromise.m */,
+				B631299221432DEA00CFB6E2 /* SomePromiseThread.h */,
+				B631298421432DEA00CFB6E2 /* SomePromiseThread.m */,
+				B631299721432DEA00CFB6E2 /* SomePromiseLocContainer.h */,
+				B631298521432DEA00CFB6E2 /* SomePromiseLocContainer.m */,
+				B631299D21432DEA00CFB6E2 /* SomePromiseTypes.h */,
+				B631299121432DEA00CFB6E2 /* SomePromiseTypes.m */,
+				B631299621432DEA00CFB6E2 /* SomePromiseObject.h */,
+				B631298621432DEA00CFB6E2 /* SomePromiseObject.m */,
+				B631298721432DEA00CFB6E2 /* SomePromiseDataStream.h */,
+				B631299421432DEA00CFB6E2 /* SomePromiseDataStream.m */,
+				B631298821432DEA00CFB6E2 /* SomePromiseInternals.h */,
+				B631298921432DEA00CFB6E2 /* SomePromiseFuture.h */,
+				B631299521432DEA00CFB6E2 /* SomePromiseFuture.m */,
+				B631298B21432DEA00CFB6E2 /* SomePromiseSignal.h */,
+				B631299B21432DEA00CFB6E2 /* SomePromiseSignal.m */,
+				B631299A21432DEA00CFB6E2 /* SomePromiseUtils.h */,
+				B631298C21432DEA00CFB6E2 /* SomePromiseUtils.m */,
+				B631298D21432DEA00CFB6E2 /* SomePromiseEvents.h */,
+				B631298E21432DEA00CFB6E2 /* SomePromiseExtend.m */,
+				B631298F21432DEA00CFB6E2 /* SomePromise+SomePromise_Helper.m */,
+				B631299021432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.h */,
+				B631299E21432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m */,
+				B631299821432DEA00CFB6E2 /* SomePromiseExtend.h */,
+				B631299921432DEA00CFB6E2 /* SomePromiseEvents.m */,
+				B631299C21432DEA00CFB6E2 /* SomePromiseMayBe.h */,
+				B631298A21432DEA00CFB6E2 /* SomePromiseMayBe.m */,
+				B626ED2D21AEFDBC00C81BF2 /* SomePromiseFunctor.h */,
+				B626ED2E21AEFDBC00C81BF2 /* SomePromiseFunctor.m */,
+				B62171F021C965040064AB9C /* SomePromiseGenerator.h */,
+				B62171F121C965040064AB9C /* SomePromiseGenerator.m */,
+				B6F8059821D2B24D00310E34 /* SPAsyncAwait.h */,
+				B617AADD21D6A7140088375A /* SPAsyncAwait.m */,
+			);
+			path = "Objective-c";
+			sourceTree = "<group>";
+		};
+		B631299F21432DEA00CFB6E2 /* Testharness */ = {
+			isa = PBXGroup;
+			children = (
+				B63129A021432DEA00CFB6E2 /* Objective-c */,
+			);
+			name = Testharness;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B63129A021432DEA00CFB6E2 /* Objective-c */ = {
+			isa = PBXGroup;
+			children = (
+				B63129A121432DEA00CFB6E2 /* FifthViewController.h */,
+				B63129A221432DEA00CFB6E2 /* DeferTestViewController.h */,
+				B63129A321432DEA00CFB6E2 /* EighthViewController.m */,
+				B63129A521432DEA00CFB6E2 /* ChainOnThreadTestViewController.m */,
+				B63129A421432DEA00CFB6E2 /* SPFabricTestViewController.m */,
+				B63129A621432DEA00CFB6E2 /* EleventhViewController.m */,
+				B63129A721432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.m */,
+				B63129A821432DEA00CFB6E2 /* SPObjectTestViewController.m */,
+				B63129A921432DEA00CFB6E2 /* HelperTestViewController.m */,
+				B63129AA21432DEA00CFB6E2 /* ClassBoxTestViewController.m */,
+				B63129AB21432DEA00CFB6E2 /* NinethViewController.m */,
+				B63129AC21432DEA00CFB6E2 /* AppDelegate.h */,
+				B63129AD21432DEA00CFB6E2 /* PropertyAfterTestViewController.h */,
+				B63129AE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m */,
+				B63129AF21432DEA00CFB6E2 /* SeventhViewController.h */,
+				B63129B021432DEA00CFB6E2 /* SixthViewController.h */,
+				B63129B121432DEA00CFB6E2 /* TenthViewController.h */,
+				B63129B221432DEA00CFB6E2 /* SPDataStreamViewController.m */,
+				B63129B321432DEA00CFB6E2 /* ThirdTestViewController.m */,
+				B63129B421432DEA00CFB6E2 /* ChainTestViewController.h */,
+				B63129B521432DEA00CFB6E2 /* AfterExecuteTestViewController.m */,
+				B63129B621432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.m */,
+				B63129B721432DEA00CFB6E2 /* SecondTestViewController.h */,
+				B63129B821432DEA00CFB6E2 /* FirstTestViewController.m */,
+				B63129B921432DEA00CFB6E2 /* FutureObjectViewController.m */,
+				B63129BA21432DEA00CFB6E2 /* EventsTestViewController.m */,
+				B63129BB21432DEA00CFB6E2 /* Assets.xcassets */,
+				B63129BC21432DEA00CFB6E2 /* ForthTestViewController.h */,
+				B63129BD21432DEA00CFB6E2 /* SettingsTestViewController.h */,
+				B63129BE21432DEA00CFB6E2 /* ExtendTestViewController.h */,
+				B63129BF21432DEA00CFB6E2 /* RetryTestViewController.h */,
+				B63129C021432DEA00CFB6E2 /* LaunchScreen.storyboard */,
+				B63129C221432DEA00CFB6E2 /* Main.storyboard */,
+				B63129C421432DEA00CFB6E2 /* ClassBoxTestViewController.h */,
+				B63129C521432DEA00CFB6E2 /* HelperTestViewController.h */,
+				B63129C621432DEA00CFB6E2 /* SPObjectTestViewController.h */,
+				B63129C721432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.h */,
+				B63129C821432DEA00CFB6E2 /* ChainOnThreadTestViewController.h */,
+				B63129C921432DEA00CFB6E2 /* EleventhViewController.h */,
+				B63129CA21432DEA00CFB6E2 /* SPFabricTestViewController.h */,
+				B63129CB21432DEA00CFB6E2 /* main.m */,
+				B63129CC21432DEA00CFB6E2 /* EighthViewController.h */,
+				B63129CD21432DEA00CFB6E2 /* DeferTestViewController.m */,
+				B63129CE21432DEA00CFB6E2 /* FifthViewController.m */,
+				B63129CF21432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.h */,
+				B63129D021432DEA00CFB6E2 /* AfterExecuteTestViewController.h */,
+				B63129D121432DEA00CFB6E2 /* ThirdTestViewController.h */,
+				B63129D221432DEA00CFB6E2 /* ChainTestViewController.m */,
+				B63129D321432DEA00CFB6E2 /* SPDataStreamViewController.h */,
+				B63129D421432DEA00CFB6E2 /* TenthViewController.m */,
+				B63129D521432DEA00CFB6E2 /* SixthViewController.m */,
+				B63129D621432DEA00CFB6E2 /* SeventhViewController.m */,
+				B63129D721432DEA00CFB6E2 /* PropertyAfterTestViewController.m */,
+				B63129D821432DEA00CFB6E2 /* SomePromiseThreadTestViewController.h */,
+				B63129D921432DEA00CFB6E2 /* AppDelegate.m */,
+				B63129DA21432DEA00CFB6E2 /* NinethViewController.h */,
+				B63129DB21432DEA00CFB6E2 /* EventsTestViewController.h */,
+				B63129DC21432DEA00CFB6E2 /* FutureObjectViewController.h */,
+				B63129DD21432DEA00CFB6E2 /* FirstTestViewController.h */,
+				B63129DE21432DEA00CFB6E2 /* SomePromises.xcodeproj */,
+				B63129E121432DEA00CFB6E2 /* SecondTestViewController.m */,
+				B63129E221432DEA00CFB6E2 /* Info.plist */,
+				B63129E321432DEA00CFB6E2 /* RetryTestViewController.m */,
+				B63129E421432DEA00CFB6E2 /* SettingsTestViewController.m */,
+				B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */,
+				B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */,
+				B626ED3021AEFF8C00C81BF2 /* TestFunctors.h */,
+				B626ED3121AEFF8C00C81BF2 /* TestFunctors.m */,
+				B62171F321C969940064AB9C /* GeneratorTestViewController.h */,
+				B62171F421C969940064AB9C /* GeneratorTestViewController.m */,
+			);
+			path = "Objective-c";
+			sourceTree = "<group>";
+		};
+		B63129DF21432DEA00CFB6E2 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B65DA72B2003E76900BC124F = {
+			isa = PBXGroup;
+			children = (
+				B631298121432DEA00CFB6E2 /* Promises */,
+				B631299F21432DEA00CFB6E2 /* Testharness */,
+				B65DA7352003E76900BC124F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B65DA7352003E76900BC124F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B65DA7342003E76900BC124F /* SomePromises.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B65DA7332003E76900BC124F /* SomePromises */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B65DA74A2003E76900BC124F /* Build configuration list for PBXNativeTarget "SomePromises" */;
+			buildPhases = (
+				B65DA7302003E76900BC124F /* Sources */,
+				B65DA7312003E76900BC124F /* Frameworks */,
+				B65DA7322003E76900BC124F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SomePromises;
+			productName = SomePromises;
+			productReference = B65DA7342003E76900BC124F /* SomePromises.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B65DA72C2003E76900BC124F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "SOME projects";
+				TargetAttributes = {
+					B65DA7332003E76900BC124F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B65DA72F2003E76900BC124F /* Build configuration list for PBXProject "SomePromises" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B65DA72B2003E76900BC124F;
+			productRefGroup = B65DA7352003E76900BC124F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B63129DF21432DEA00CFB6E2 /* Products */;
+					ProjectRef = B63129DE21432DEA00CFB6E2 /* SomePromises.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				B65DA7332003E76900BC124F /* SomePromises */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B65DA7322003E76900BC124F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6312A0821432DEA00CFB6E2 /* Main.storyboard in Resources */,
+				B6312A0621432DEA00CFB6E2 /* Assets.xcassets in Resources */,
+				B6312A0721432DEA00CFB6E2 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B65DA7302003E76900BC124F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6312A0E21432DEA00CFB6E2 /* SixthViewController.m in Sources */,
+				B63129F621432DEA00CFB6E2 /* SPFabricTestViewController.m in Sources */,
+				B6312A0F21432DEA00CFB6E2 /* SeventhViewController.m in Sources */,
+				B63129F321432DEA00CFB6E2 /* SomePromiseSignal.m in Sources */,
+				B6312A1121432DEA00CFB6E2 /* AppDelegate.m in Sources */,
+				B6312A1421432DEA00CFB6E2 /* RetryTestViewController.m in Sources */,
+				B63129FE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m in Sources */,
+				B6312A1521432DEA00CFB6E2 /* SettingsTestViewController.m in Sources */,
+				B6312A1621432DEA00CFB6E2 /* ExtendTestViewController.m in Sources */,
+				B6312A0321432DEA00CFB6E2 /* FirstTestViewController.m in Sources */,
+				B63129E821432DEA00CFB6E2 /* SomePromiseLocContainer.m in Sources */,
+				B63129E921432DEA00CFB6E2 /* SomePromiseObject.m in Sources */,
+				B6312A0921432DEA00CFB6E2 /* main.m in Sources */,
+				B63129ED21432DEA00CFB6E2 /* SomePromise+SomePromise_Helper.m in Sources */,
+				B6312A0B21432DEA00CFB6E2 /* FifthViewController.m in Sources */,
+				B6312A0021432DEA00CFB6E2 /* ThirdTestViewController.m in Sources */,
+				B63129FC21432DEA00CFB6E2 /* ClassBoxTestViewController.m in Sources */,
+				B63129EF21432DEA00CFB6E2 /* SomePromise.m in Sources */,
+				B6312A0C21432DEA00CFB6E2 /* ChainTestViewController.m in Sources */,
+				B6312A0421432DEA00CFB6E2 /* FutureObjectViewController.m in Sources */,
+				B62171F521C969940064AB9C /* GeneratorTestViewController.m in Sources */,
+				B63129EA21432DEA00CFB6E2 /* SomePromiseMayBe.m in Sources */,
+				B626ED2F21AEFDBC00C81BF2 /* SomePromiseFunctor.m in Sources */,
+				B63129F921432DEA00CFB6E2 /* TimeoutThreadStopTestViewController.m in Sources */,
+				B6312A0221432DEA00CFB6E2 /* SPDataStreamGrouppingTestViewController.m in Sources */,
+				B63129FA21432DEA00CFB6E2 /* SPObjectTestViewController.m in Sources */,
+				B63129F421432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m in Sources */,
+				B63129EC21432DEA00CFB6E2 /* SomePromiseExtend.m in Sources */,
+				B6312A0521432DEA00CFB6E2 /* EventsTestViewController.m in Sources */,
+				B63129F821432DEA00CFB6E2 /* EleventhViewController.m in Sources */,
+				B63129F721432DEA00CFB6E2 /* ChainOnThreadTestViewController.m in Sources */,
+				B626ED3221AEFF8C00C81BF2 /* TestFunctors.m in Sources */,
+				B6312A0A21432DEA00CFB6E2 /* DeferTestViewController.m in Sources */,
+				B63129F121432DEA00CFB6E2 /* SomePromiseFuture.m in Sources */,
+				B63129F521432DEA00CFB6E2 /* EighthViewController.m in Sources */,
+				B63129FF21432DEA00CFB6E2 /* SPDataStreamViewController.m in Sources */,
+				B63129EE21432DEA00CFB6E2 /* SomePromiseTypes.m in Sources */,
+				B6312A1021432DEA00CFB6E2 /* PropertyAfterTestViewController.m in Sources */,
+				B63129EB21432DEA00CFB6E2 /* SomePromiseUtils.m in Sources */,
+				B63129E721432DEA00CFB6E2 /* SomePromiseThread.m in Sources */,
+				B6312A0D21432DEA00CFB6E2 /* TenthViewController.m in Sources */,
+				B63129FB21432DEA00CFB6E2 /* HelperTestViewController.m in Sources */,
+				B63129F221432DEA00CFB6E2 /* SomePromiseEvents.m in Sources */,
+				B63129FD21432DEA00CFB6E2 /* NinethViewController.m in Sources */,
+				B62171F221C965040064AB9C /* SomePromiseGenerator.m in Sources */,
+				B6312A0121432DEA00CFB6E2 /* AfterExecuteTestViewController.m in Sources */,
+				B6312A1721432DEA00CFB6E2 /* ForthTestViewController.m in Sources */,
+				B63129F021432DEA00CFB6E2 /* SomePromiseDataStream.m in Sources */,
+				B617AADE21D6A7140088375A /* SPAsyncAwait.m in Sources */,
+				B6312A1221432DEA00CFB6E2 /* SecondTestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B63129C021432DEA00CFB6E2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63129C121432DEA00CFB6E2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B63129C221432DEA00CFB6E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63129C321432DEA00CFB6E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B65DA7482003E76900BC124F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B65DA7492003E76900BC124F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B65DA74B2003E76900BC124F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6WLV67D2QG;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.someprojects.SomePromises;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B65DA74C2003E76900BC124F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6WLV67D2QG;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.someprojects.SomePromises;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B65DA72F2003E76900BC124F /* Build configuration list for PBXProject "SomePromises" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B65DA7482003E76900BC124F /* Debug */,
+				B65DA7492003E76900BC124F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B65DA74A2003E76900BC124F /* Build configuration list for PBXNativeTarget "SomePromises" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B65DA74B2003E76900BC124F /* Debug */,
+				B65DA74C2003E76900BC124F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B65DA72C2003E76900BC124F /* Project object */;
+}
