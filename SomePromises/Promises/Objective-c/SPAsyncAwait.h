@@ -27,6 +27,20 @@ dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
 	});\
 }
 
+
+#define SP_FUTURE(whatToCall) \
+^\
+{\
+	SomePromiseFuture *future = [[SomePromiseFuture alloc] init]; \
+	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\
+		id result = [whatToCall SP_ASYNC:YES];\
+		[future resolveWithObject:result]; \
+	});\
+	return future; \
+}()
+
+#define SP_AWAIT_FUTURE(future) [((SomePromiseFuture*)future) get]
+
 #define SP_AWAIT_PROMISE(promise) \
 	^id () {\
 		if (sp_async_await) {} \

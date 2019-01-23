@@ -64,6 +64,24 @@ typedef void (^TestCompletionBlock)(NSString* result);
 	NSLog(@"RESULT: %@", fromPromise);
 }
 
+//3 case async with future
+- (NSString*) asyncFunc1:(NSString*) param1 spasync {
+	sleep(3);
+	return @"Func1 response";
+}
+
+- (NSString*) asyncFunc2:(NSString*) param2 spasync {
+	sleep(5);
+	return @"Func2 response";
+}
+
+- (NSString*) asyncFunc3From1:(NSString*) fromFirst fromSecond:(NSString*) fromSecond spasync {
+	sleep(2);
+	return [NSString stringWithFormat:@"RESULT: %@ + %@", fromFirst, fromSecond];
+}
+
+// asyncFunc1 and asyncFunc2 are independent functions and can work same time
+
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
@@ -73,6 +91,14 @@ typedef void (^TestCompletionBlock)(NSString* result);
 	SP_ASYNC_BEGIN
 		NSString *result = SP_AWAIT_WITHCOMPLETION(self testForAsyncFunctionWithCompletionBlock:^(NSString *str), result = str;);
 		NSLog(@"ASYNC AWAIT with completion block: %@", result);
+	SP_ASYNC_END
+	
+	//3d case
+	SP_ASYNC_BEGIN
+		NSString *first = (NSString*)SP_FUTURE(self asyncFunc1:@"firstParam");
+		NSString *second = (NSString*)SP_FUTURE(self asyncFunc2:@"secondParam");
+		NSString *result = SP_AWAIT(self asyncFunc3From1:SP_AWAIT_FUTURE(first) fromSecond:SP_AWAIT_FUTURE(second));
+		NSLog(@"ASYNC AWAIT with Future: %@", result);
 	SP_ASYNC_END
 	
 	SPBaseFunctor *concatenator = [[SPBaseFunctor alloc] initWithBlock:^(NSArray *params) {
