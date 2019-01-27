@@ -30,6 +30,7 @@
 #import "SomePromiseFunctor.h"
 #import "SomePromiseGenerator.h"
 #import "SPAsyncAwait.h"
+#import "SPActor.h"
 
 //=======================================================================================================================
 //*	defines

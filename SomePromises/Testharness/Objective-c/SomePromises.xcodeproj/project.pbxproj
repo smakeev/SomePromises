@@ -60,6 +60,8 @@
 		B6312A1521432DEA00CFB6E2 /* SettingsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E421432DEA00CFB6E2 /* SettingsTestViewController.m */; };
 		B6312A1621432DEA00CFB6E2 /* ExtendTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */; };
 		B6312A1721432DEA00CFB6E2 /* ForthTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */; };
+		B6A1950821F8E62300D17D84 /* SPActor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1950721F8E62300D17D84 /* SPActor.m */; };
+		B6A1950B21F8F29600D17D84 /* ActorTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1950A21F8F29600D17D84 /* ActorTestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +169,10 @@
 		B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendTestViewController.m; sourceTree = "<group>"; };
 		B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForthTestViewController.m; sourceTree = "<group>"; };
 		B65DA7342003E76900BC124F /* SomePromises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SomePromises.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A1950621F8E62300D17D84 /* SPActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPActor.h; sourceTree = "<group>"; };
+		B6A1950721F8E62300D17D84 /* SPActor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPActor.m; sourceTree = "<group>"; };
+		B6A1950921F8F29600D17D84 /* ActorTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActorTestViewController.h; sourceTree = "<group>"; };
+		B6A1950A21F8F29600D17D84 /* ActorTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActorTestViewController.m; sourceTree = "<group>"; };
 		B6F8059821D2B24D00310E34 /* SPAsyncAwait.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAsyncAwait.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +233,8 @@
 				B62171F121C965040064AB9C /* SomePromiseGenerator.m */,
 				B6F8059821D2B24D00310E34 /* SPAsyncAwait.h */,
 				B617AADD21D6A7140088375A /* SPAsyncAwait.m */,
+				B6A1950621F8E62300D17D84 /* SPActor.h */,
+				B6A1950721F8E62300D17D84 /* SPActor.m */,
 			);
 			path = "Objective-c";
 			sourceTree = "<group>";
@@ -310,6 +318,8 @@
 				B63129E521432DEA00CFB6E2 /* ExtendTestViewController.m */,
 				B63129E621432DEA00CFB6E2 /* ForthTestViewController.m */,
 				B626ED3021AEFF8C00C81BF2 /* TestFunctors.h */,
+				B6A1950921F8F29600D17D84 /* ActorTestViewController.h */,
+				B6A1950A21F8F29600D17D84 /* ActorTestViewController.m */,
 				B626ED3121AEFF8C00C81BF2 /* TestFunctors.m */,
 				B62171F321C969940064AB9C /* GeneratorTestViewController.h */,
 				B62171F421C969940064AB9C /* GeneratorTestViewController.m */,
@@ -444,6 +454,7 @@
 				B63129FA21432DEA00CFB6E2 /* SPObjectTestViewController.m in Sources */,
 				B63129F421432DEA00CFB6E2 /* SomePromiseChainMethodsExecutorStrategy.m in Sources */,
 				B63129EC21432DEA00CFB6E2 /* SomePromiseExtend.m in Sources */,
+				B6A1950B21F8F29600D17D84 /* ActorTestViewController.m in Sources */,
 				B6312A0521432DEA00CFB6E2 /* EventsTestViewController.m in Sources */,
 				B63129F821432DEA00CFB6E2 /* EleventhViewController.m in Sources */,
 				B63129F721432DEA00CFB6E2 /* ChainOnThreadTestViewController.m in Sources */,
@@ -455,6 +466,7 @@
 				B63129EE21432DEA00CFB6E2 /* SomePromiseTypes.m in Sources */,
 				B6312A1021432DEA00CFB6E2 /* PropertyAfterTestViewController.m in Sources */,
 				B63129EB21432DEA00CFB6E2 /* SomePromiseUtils.m in Sources */,
+				B6A1950821F8E62300D17D84 /* SPActor.m in Sources */,
 				B63129E721432DEA00CFB6E2 /* SomePromiseThread.m in Sources */,
 				B6312A0D21432DEA00CFB6E2 /* TenthViewController.m in Sources */,
 				B63129FB21432DEA00CFB6E2 /* HelperTestViewController.m in Sources */,
