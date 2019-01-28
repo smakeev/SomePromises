@@ -7,7 +7,7 @@
 //
 
 #import "SPActor.h"
-#import "SomePromiseThread.h"
+#import "SomePromise.h"
 #import <objc/runtime.h>
 
 @interface __SPActorWorker : NSProxy
@@ -82,9 +82,14 @@
     return [self->_actor conformsToProtocol:aProtocol];
 }
 
+- (id) valueForKey:(NSString*) key
+{
+	return [self get:key];
+}
+
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
-	NSMethodSignature* signature = [self->_actor methodSignatureForSelector:sel];
+ 	NSMethodSignature* signature = [self->_actor methodSignatureForSelector:sel];
 	return signature;
 }
 
@@ -93,9 +98,10 @@
 	const char* returnType = [invocation.methodSignature methodReturnType];
 	
 	if (returnType[0] == _C_CONST) returnType++;
+
 	if (strcmp(returnType, @encode(void)) != 0 )
 	{
-		NSLog(@"SomePromise Warning: Actor object used for calling method with not void return type.");
+		FATAL_ERROR(@"Actor object mast not return", @"SomePromise: Actor object used for calling method with not void return type.");
 	}
 
 	if(self->_actor.thread) {
@@ -107,6 +113,22 @@
 			[invocation invokeWithTarget:self->_actor];
 		});
 	}
+}
+
+- (id) get:(NSString*) key
+{
+	__block id result;
+	if(self->_actor.thread) {
+		[_actor.thread performBlockSynchroniously:^{
+			result = [self->_actor valueForKey:key];
+		}];
+	} else {
+		dispatch_async(self->_actor.queue, ^{
+			result = [self->_actor valueForKey:key];
+		});
+	}
+	
+	return result;
 }
 
 @end

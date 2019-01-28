@@ -433,11 +433,12 @@
        return;
 	}
 	
-	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[block copy] waitUntilDone:YES];
+	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[block copy] waitUntilDone:NO];
 	[_thread.condition lock];
 	_thread.runningTask = YES;
 	[_thread.condition signal];
 	[_thread.condition unlock];
+	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[^{/*empty*/} copy] waitUntilDone:YES];
 }
 
 - (void) performInvocation:(NSInvocation*)invocation
@@ -479,11 +480,13 @@
        return;
 	}
 	
-	[invocation performSelector:@selector(invoke) onThread:_thread withObject:nil waitUntilDone:YES];
+	[invocation performSelector:@selector(invoke) onThread:_thread withObject:nil waitUntilDone:NO];
 	[_thread.condition lock];
 	_thread.runningTask = YES;
 	[_thread.condition signal];
 	[_thread.condition unlock];
+	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[^{/*empty*/} copy] waitUntilDone:YES];
+
 }
 
 - (NSQualityOfService) qualityOfService

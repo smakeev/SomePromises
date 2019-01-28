@@ -10,12 +10,17 @@
 #import "SomePromise.h"
 
 @actor(MyActor)
-
+@property (nonatomic, strong) NSString* valueToTest;
 - (void) action;
 
 @end
 
 @implementation MyActor
+
+//- (void) setValueToTest:(NSString *)valueToTest {
+//	_valueToTest = [valueToTest copy];
+//
+//}
 
 - (void) action {
 	NSLog(@"Action. Check the thread");
@@ -50,6 +55,8 @@
 	MyMainActor *mainActor = [MyMainActor mainActor];
 	[actor action];
 	[mainActor mainAction];
+	actor.valueToTest = @"TEST";
+	NSLog(@"QWQWQW: %@", [actor get:@"valueToTest"]);
 }
 
 
