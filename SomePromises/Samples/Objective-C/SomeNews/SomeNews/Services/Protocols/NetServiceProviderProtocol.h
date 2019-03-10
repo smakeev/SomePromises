@@ -16,7 +16,6 @@
 - (SomePromise*) predownloadPagesJson:(NSInteger) pagesToDownload;
 - (void) addPage:(SPPair*)pairWhithPage usingChain:(SomePromise*)chain;
 - (SomePromise*) getSources;
-- (SomePromise*) downloadImage:(NSString*)url;
 
 @end
 typedef NSObject<NetServiceProviderProtocol> NetProvider;

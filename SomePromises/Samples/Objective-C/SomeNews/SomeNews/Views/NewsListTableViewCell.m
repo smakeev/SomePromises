@@ -70,12 +70,12 @@
 
 - (BOOL) updateImageWithUrl:(NSString*)imageUrl {
 	if ([self.imageUrl isEqualToString:imageUrl]) {
-		UIImage *image = [Services.images imageForUrl:[imageUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+		UIImage *image = [Services.images imageForUrl:imageUrl];
 		if(image)
 		{
+			[self.imageDownloadingIndicator stopAnimating];
+			self.imageDownloadingIndicator.hidden = YES;
 			self.image.image = image;
-			//[self.imageDownloadingIndicator stopAnimating];
-			//self.imageDownloadingIndicator.hidden = YES;
 		}
 		return NO;
 	}

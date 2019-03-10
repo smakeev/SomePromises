@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B61597082235A89B000A8BCD /* SPLocContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61597072235A89B000A8BCD /* SPLocContainer.swift */; };
+		B615970B2235A96E000A8BCD /* SomePromiseThread.m in Sources */ = {isa = PBXBuildFile; fileRef = B615970A2235A96E000A8BCD /* SomePromiseThread.m */; };
 		B6A601872219C8A600E238A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A601862219C8A600E238A9 /* AppDelegate.swift */; };
 		B6A601892219C8A600E238A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A601882219C8A600E238A9 /* ViewController.swift */; };
 		B6A6018C2219C8A600E238A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A6018A2219C8A600E238A9 /* Main.storyboard */; };
 		B6A6018E2219C8A700E238A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A6018D2219C8A700E238A9 /* Assets.xcassets */; };
 		B6A601912219C8A700E238A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A6018F2219C8A700E238A9 /* LaunchScreen.storyboard */; };
-		B6A6019B2219C91200E238A9 /* SPLocContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A6019A2219C91200E238A9 /* SPLocContainer.swift */; };
-		B6A601A22219C9C100E238A9 /* SomePromiseThread.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A601A02219C9C100E238A9 /* SomePromiseThread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B61597072235A89B000A8BCD /* SPLocContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SPLocContainer.swift; path = ../../../Promises/Swift/SPLocContainer.swift; sourceTree = "<group>"; };
+		B61597092235A96E000A8BCD /* SomePromiseThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SomePromiseThread.h; path = "../../../../Promises/Objective-c/SomePromiseThread.h"; sourceTree = "<group>"; };
+		B615970A2235A96E000A8BCD /* SomePromiseThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SomePromiseThread.m; path = "../../../../Promises/Objective-c/SomePromiseThread.m"; sourceTree = "<group>"; };
 		B6A601832219C8A600E238A9 /* SomePromises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SomePromises.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A601862219C8A600E238A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6A601882219C8A600E238A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,10 +27,6 @@
 		B6A6018D2219C8A700E238A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6A601902219C8A700E238A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A601922219C8A700E238A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6A6019A2219C91200E238A9 /* SPLocContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPLocContainer.swift; sourceTree = "<group>"; };
-		B6A6019F2219C9C000E238A9 /* SomePromises-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SomePromises-Bridging-Header.h"; sourceTree = "<group>"; };
-		B6A601A02219C9C100E238A9 /* SomePromiseThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SomePromiseThread.m; path = "../../../../../Promises/Objective-c/SomePromiseThread.m"; sourceTree = "<group>"; };
-		B6A601A12219C9C100E238A9 /* SomePromiseThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SomePromiseThread.h; path = "../../../../../Promises/Objective-c/SomePromiseThread.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,10 +40,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B61597042235A86E000A8BCD /* Promises */ = {
+			isa = PBXGroup;
+			children = (
+				B61597062235A88A000A8BCD /* Swift */,
+				B61597052235A87E000A8BCD /* Objective-C */,
+			);
+			name = Promises;
+			sourceTree = "<group>";
+		};
+		B61597052235A87E000A8BCD /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				B61597092235A96E000A8BCD /* SomePromiseThread.h */,
+				B615970A2235A96E000A8BCD /* SomePromiseThread.m */,
+			);
+			path = "Objective-C";
+			sourceTree = "<group>";
+		};
+		B61597062235A88A000A8BCD /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B61597072235A89B000A8BCD /* SPLocContainer.swift */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
 		B6A6017A2219C8A600E238A9 = {
 			isa = PBXGroup;
 			children = (
-				B6A6019C2219C91600E238A9 /* Promises */,
 				B6A601852219C8A600E238A9 /* SomePromises */,
 				B6A601842219C8A600E238A9 /* Products */,
 			);
@@ -61,6 +85,7 @@
 		B6A601852219C8A600E238A9 /* SomePromises */ = {
 			isa = PBXGroup;
 			children = (
+				B61597042235A86E000A8BCD /* Promises */,
 				B6A601862219C8A600E238A9 /* AppDelegate.swift */,
 				B6A601882219C8A600E238A9 /* ViewController.swift */,
 				B6A6018A2219C8A600E238A9 /* Main.storyboard */,
@@ -69,33 +94,6 @@
 				B6A601922219C8A700E238A9 /* Info.plist */,
 			);
 			path = SomePromises;
-			sourceTree = "<group>";
-		};
-		B6A6019C2219C91600E238A9 /* Promises */ = {
-			isa = PBXGroup;
-			children = (
-				B6A6019E2219C97B00E238A9 /* Objective-C */,
-				B6A6019D2219C92000E238A9 /* Swift */,
-			);
-			path = Promises;
-			sourceTree = "<group>";
-		};
-		B6A6019D2219C92000E238A9 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				B6A6019A2219C91200E238A9 /* SPLocContainer.swift */,
-			);
-			path = Swift;
-			sourceTree = "<group>";
-		};
-		B6A6019E2219C97B00E238A9 /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-				B6A601A12219C9C100E238A9 /* SomePromiseThread.h */,
-				B6A601A02219C9C100E238A9 /* SomePromiseThread.m */,
-				B6A6019F2219C9C000E238A9 /* SomePromises-Bridging-Header.h */,
-			);
-			path = "Objective-C";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,9 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61597082235A89B000A8BCD /* SPLocContainer.swift in Sources */,
+				B615970B2235A96E000A8BCD /* SomePromiseThread.m in Sources */,
 				B6A601892219C8A600E238A9 /* ViewController.swift in Sources */,
-				B6A601A22219C9C100E238A9 /* SomePromiseThread.m in Sources */,
-				B6A6019B2219C91200E238A9 /* SPLocContainer.swift in Sources */,
 				B6A601872219C8A600E238A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +327,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.someprojects.SomePromises;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Promises/Objective-C/SomePromises-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SomePromises-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -350,7 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.someprojects.SomePromises;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Promises/Objective-C/SomePromises-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SomePromises-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -25,10 +25,9 @@
 #define kCellMaxHeight 350.0
 
 #define kNoSelection -1
-
 @protocol NewsListCellImageUpdater <NSObject>
 - (void) imageTapped:(UITapGestureRecognizer*)sender;
-@end
+@end;
 
 @interface __IndexPathWrapper : NSObject
 
@@ -45,6 +44,7 @@
 	NSObject<UITableViewDelegate, UITableViewDataSource, NewsListCellImageUpdater> *_delegate;
 	IBOutlet UITableView *_table;
 	
+	@public
 	NSMutableArray *_indexesOfUpdated;
 }
 
@@ -112,6 +112,7 @@
 	_selectedArticleIndex = kNoSelection;
 	self.extendedCells = [NSMutableArray new];
 	__weak NewsListViewController *weakListControllerRef = self;
+
 	_delegate =  [SomePromiseObject createObjectBasedOn:[NSObject class]
 												protocols:@[@protocol(UITableViewDelegate),
 														  @protocol(UITableViewDataSource),

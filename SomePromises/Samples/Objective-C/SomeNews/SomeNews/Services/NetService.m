@@ -66,80 +66,6 @@
 	return [self promiseThenTo:promise forPage:0];
 }
 
-- (SomePromise*) downloadImage:(NSString*)url
-{
-	return (SomePromise*)spTry(^(NSString *promiseName,  SomeIsRejectedBlockProvider *isRejected, SomeParameterProvider *urlToLoad, SomeParameterProvider *self){
-		NetService *service = self.weakValue;
-		NSString *urlToImage = urlToLoad.value;
-		__block BOOL shouldWait = YES;
-		
-		if (![urlToImage hasPrefix:@"http"])
-		{
-			urlToImage = [NSString stringWithFormat:@"%@%@", @"https:", urlToImage];
-			NSLog(@"Fixed: %@", urlToImage);
-		}
-		urlToImage = [urlToImage stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-		
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlToImage]];
-		NSURLSessionDataTask *getTask = nil;
-		if(!request || !request.URL)
-		{
-			UIImage *errorImage = [UIImage imageNamed:@"DownloadError"];
-			errorImage.spExtend(@"_errorText",  @"Download error.", nil, nil);
-			[service.owner.images addImage:errorImage toUrl:request.URL.absoluteString];
-		}
-		__block UIImage *imageResult = nil;
-		@sp_avoidblockretain(service)
-		NSLog(@"Request to:%@", request.URL);
-	
-		getTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data,
-																								NSURLResponse *response,
-																								NSError *error){
-			@sp_strongify(service)
-			UIImage *result = [UIImage imageWithData:data];
-			if(error == nil && result != nil)
-			{
-				imageResult = result;
-				shouldWait = NO;
-			}
-			else
-			{
-				UIImage *errorImage = [UIImage imageNamed:@"DownloadError"];
-				errorImage.spExtend(@"_errorText",  @"Download error.", nil, nil);
-				imageResult = errorImage;
-				shouldWait = NO;
-			}
-		}];
-		@sp_avoidend(service)
-		
-		if(getTask == nil)
-		{
-			UIImage *errorImage = [UIImage imageNamed:@"DownloadError"];
-			errorImage.spExtend(@"_errorText",  @"Download error.", nil, nil);
-			imageResult = errorImage;
-			shouldWait = NO;
-		}
-		[getTask resume];
-		BOOL isFinished = NO;
-		@synchronized(service)
-		{
-			isFinished = !shouldWait;
-		}
-		while(!isFinished) {
-			if(isRejected.isRejectedBlock()) {
-				[getTask cancel];
-				@throw (nil); //just exit the promise block.
-			}
-			@synchronized(service)
-			{
-				isFinished = !shouldWait;
-			}
-		}
-
-		return imageResult;
-	}, imageLoaderPromise, isRejectedProvider(), parameterProvider(url), weakParameterProvider(self));
-}
-
 
 - (void) openInSafariURL:(NSURL*)url
 {
@@ -361,16 +287,6 @@
 		NSArray *articles = fullResult[@"articles"];
 		//activate image cash
 		NSLog(@"!!!!!!!!! Total results:%@", fullResult[@"totalResults"]);
-		for (NSDictionary *article in articles)
-		{
-		//@TODO: move this out
-//			NSString *url =  [@asMaybe(article[@"urlToImage"], [NSString class]) getOrElse:@""];
-//			if (![url hasPrefix:@"http"])
-//			{
-//				url = [NSString stringWithFormat:@"%@%@", @"https:", url];
-//			}
-//			[service.owner.images addUrl:[url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-		}
 		
 		SPPair *result = [SPPair pairWithLeft:fullResult[@"totalResults"] right:articles];
 		return result;
@@ -396,7 +312,7 @@
 
 - (void) addPage:(SPPair<NSNumber*, SPArrayElementWrapper*>*)pairWhithPage usingChain:(SomePromise*)chain
 {
-	SomePromise *promise = (SomePromise*)chain.spThen(^(NSString *promiseName, SomeParameterProvider *params){
+	chain.spThen(^(NSString *promiseName, SomeParameterProvider *params){
 		@retainNetworkIndicator
 		SPArrayElementWrapper *pageJSON = ((SPPair*)params.value).right;
 		NSNumber *count = ((SPPair*)params.value).left;

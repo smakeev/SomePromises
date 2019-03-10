@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 					.registerClass("CatOwner") {
 										producer in
 			
-										if let cat = producer.produce(className: "Cat") as? Cat {
+										if let cat = producer.produceClass(name: "Cat") as? Cat {
 											let catOwner = CatOwner()
 											catOwner.name = "Sergey"
 											catOwner.cat = cat
@@ -52,14 +52,12 @@ class ViewController: UIViewController {
 										["catName": "Mutex",
 										 "catColor" : "gray"])
 		
-		let catOwner = locContainer.produce(className: "CatOwner") as? CatOwner
+		let catOwner = locContainer.produceClass(name: "CatOwner") as? CatOwner
 		print(catOwner ?? "Nobody")
 		print(catOwner?.name ?? "No name")
 		print(catOwner?.cat ?? "No cat")
 		print(catOwner?.cat?.name ?? "No name for cat")
 		print(catOwner?.cat?.color ?? "No color")
 	}
-
-
 }
 

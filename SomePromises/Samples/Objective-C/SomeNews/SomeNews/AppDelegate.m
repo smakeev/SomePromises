@@ -163,6 +163,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	//setting up cache level 2 for image downloading
+	NSUInteger commonCache2Capcacity = 500 * 1024 * 1024;
+	NSURLCache *sharedURLCache = [[NSURLCache alloc] initWithMemoryCapacity:commonCache2Capcacity diskCapacity:commonCache2Capcacity diskPath:@"cacheLevel2"];
+	[NSURLCache setSharedURLCache:sharedURLCache];
+	
+	//setting up the App.
+
 	_model = [ArticlesModel new];
 	_modelView = [[ArticlesModelView alloc] initWithModel:_model];
 	

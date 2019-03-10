@@ -19,13 +19,23 @@
 
 @implementation UIImageViewWithDownloader
 @synthesize owner = _cell;
+
+- (NSString*) rightURL:(NSString*) requestURL {
+	if (![requestURL hasPrefix:@"http"])
+	{
+		requestURL = [NSString stringWithFormat:@"%@%@", @"https:", requestURL];
+		NSLog(@"Fixed: %@", requestURL);
+	}
+	
+	requestURL = [requestURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+	return requestURL;
+}
+
 - (void) setImageUrl:(NSString *)imageUrl {
 //start download task
 	if ([_url isEqualToString:imageUrl])
 		return;
-	[_cell.imageDownloadingIndicator startAnimating];
-	_cell.imageDownloadingIndicator.hidden = NO;
-_cell.backgroundColor = UIColor.grayColor;
+	
 	if (_imageDownloader) {
 		[_imageDownloader cancel];
 		_imageDownloader = nil;
@@ -36,44 +46,48 @@ _cell.backgroundColor = UIColor.grayColor;
 	
 	_url = [imageUrl copy];
 	NSString *requestURL = [_url copy];
-	if (![requestURL hasPrefix:@"http"])
-	{
-		requestURL = [NSString stringWithFormat:@"%@%@", @"https:", requestURL];
-		NSLog(@"Fixed: %@", requestURL);
-	}
 	
-	requestURL = [requestURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURL]];
-	if(!request || !request.URL)
-	{
-		UIImage *errorImage = [UIImage imageNamed:@"DownloadError"];
-		errorImage.spExtend(@"_errorText",  @"Download error.", nil, nil);
-		[Services.images addImage:errorImage toUrl:request.URL.absoluteString];
-		self.image = errorImage;
-		[self->_cell.imageDownloadingIndicator stopAnimating];
-		self->_cell.imageDownloadingIndicator.hidden = YES;
-		return;
-	}
-	_imageDownloader = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data,
-																								NSURLResponse *response,
-																								NSError *error){
+	requestURL = [self rightURL:requestURL];
+
+	_imageDownloader = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: requestURL] completionHandler:^(NSData *data,
+							NSURLResponse *response,
+							NSError *error) {
+		//check if this is our needed result (not one from previous position or cancel)
+		__block BOOL shouldWeProcide = YES;
+		@sp_avoidblockretain(self)
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			@sp_strongify(self)
+			if (![[self rightURL:self->_url] isEqualToString:response.URL.absoluteString]) {
+				shouldWeProcide = NO;
+			}
+		});
+		@sp_avoidend(self)
+		if (!shouldWeProcide) {
+			return;
+		}
+		
 		UIImage *result = [UIImage imageWithData:data];
+		
 		if(error != nil || result == nil) {
 			UIImage *errorImage = [UIImage imageNamed:@"DownloadError"];
 			errorImage.spExtend(@"_errorText",  @"Download error.", nil, nil);
 			result = errorImage;
-		}
+		} 
 		@sp_avoidblockretain(self)
 		dispatch_async(dispatch_get_main_queue(), ^{
 			@sp_strongify(self)
 			self.image = result;
-			[Services.images addImage:result toUrl:self->_url];
-
+			if(error != nil) {
+				[Services.images addImage:result toUrl:self->_url];
+			}
 			[self->_cell.imageDownloadingIndicator stopAnimating];
 			self->_cell.imageDownloadingIndicator.hidden = YES;
 		});
 		@sp_avoidend(self)
-																							}];
+		}];
+		[_imageDownloader resume];
+		[_cell.imageDownloadingIndicator startAnimating];
+		_cell.imageDownloadingIndicator.hidden = NO;
 }
 
 - (void) dealloc
