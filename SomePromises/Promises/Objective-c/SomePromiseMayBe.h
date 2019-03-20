@@ -33,7 +33,7 @@ typedef SomePromiseMayBeCreator<SPMaybe> SPMaybe;
 
 //create maybe based on provided instance or nil.
 #define sp_maybe(val) "should be called with @" @"". length ? [SomePromiseMayBeCreator noNil:val] : nil
-
+#define sp_weak_maybe(val) "should be called with @" @"". length ? [SomePromiseMayBeCreator noNil:val weak:YES] : nil
 //unwrap maybe to value if maybe is not nil
 //unwrapped value will be available inside the body
 #define sp_iflet(value, maybe) try{} @finally{} [maybe unwrapWithBlock:^(value) {
@@ -54,6 +54,8 @@ typedef SomePromiseMayBeCreator<SPMaybe> SPMaybe;
 
 //returns wrapped class type
 @property (nonatomic, readonly) Class type;
+
+- (BOOL) isWeak;
 
 //YES if nil, NO if value
 - (BOOL) isNone;
@@ -83,6 +85,12 @@ typedef SomePromiseMayBeCreator<SPMaybe> SPMaybe;
 //unwrap a list of maybes. If atleast one of them equalt to nil all the list is supposed to be nil and else block will be called.
 + (void) unwrapSPMaybeGroup:(NSArray<id<SPMaybe> >*)group withBlock:(void(^)(NSArray *values)) unwrapBlock else:(void(^)(void))elseBlock;
 
+- (void) map:(void(^)(id value)) mapBlock;
+- (SPMaybe*) flatMap:(SPMaybe*(^)(id value)) mapBlock;
+
+- (void (^ __nonnull)(void (^ _Nonnull)(id)))map;
+- (SPMaybe* (^ __nonnull)(SPMaybe* (^ _Nonnull)(id)))flatMap;
+
 @end
 
 //SomePromiseMayBe is used to create a SPMaybe.
@@ -93,4 +101,6 @@ typedef SomePromiseMayBeCreator<SPMaybe> SPMaybe;
 + (SPMaybe *_Nonnull)none;
 //if value - return maybe with value. if value == nil - returns maybe with nil.
 + (SPMaybe *_Nonnull)noNil:(id _Nullable)value;
++ (SPMaybe *_Nonnull)noNil:(id _Nullable)value weak:(BOOL) weak;
+
 @end

@@ -37,9 +37,8 @@
 @property (nonatomic) SPEventExpector *pageExpector;
 
 + (instancetype) new;
-
+- (void) reset;
 - (void) recreateWithFirstPageAndTotalElementsCount:(SPPair*)JSONandCount; //recreates the model.
-//- (void) addPredownloadedPageJSON:(NSArray*)pageJSON; //add article JSON with no image downloading.
 - (SPPair*) getNextPage;
 - (void) addNextPageWithJSONAndCount:(SPPair*)JSONandCount;
 - (void) recallSubscribers;

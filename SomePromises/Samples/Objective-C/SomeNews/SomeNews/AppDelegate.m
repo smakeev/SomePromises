@@ -144,8 +144,10 @@
 		[self.addingArticlesChain removeAllObjects];
 		self.addingArticlesChain = nil;
 	}
+	
+	[self.model reset];
 	@sp_avoidblockretain(self)
-	_netWorker = [_services.net getTopNews].onEachSuccess(^(NSString *_Nonnull name, id result){
+	_netWorker = [_services.net getTopNews].onEachSuccess(^(NSString *_Nonnull name, id result) {
 		@sp_strongify(self);
 		guard(self) else {return;}
 		if([name isEqualToString:topNewsPromise])
@@ -167,6 +169,25 @@
 	NSUInteger commonCache2Capcacity = 500 * 1024 * 1024;
 	NSURLCache *sharedURLCache = [[NSURLCache alloc] initWithMemoryCapacity:commonCache2Capcacity diskCapacity:commonCache2Capcacity diskPath:@"cacheLevel2"];
 	[NSURLCache setSharedURLCache:sharedURLCache];
+	
+	//services
+	_services = [SPFabric new].registerClass([UserService class], ^(SPProducer *producer){
+		return [[UserService alloc] init];
+	}).registerClass([NetService class], ^(SPProducer *produder){
+		return [[NetService alloc] init];
+	}).registerClass([ImageCashService class], ^(SPProducer *producer){
+		return [[ImageCashService alloc] init];
+	}).registerClass([ServicesProvider class], ^(SPProducer *producer){
+		NetService *netSetvice = producer.produce([NetService class]);
+		UserService *userService = producer.produce([UserService class]);
+		ImageCashService *imageCash = producer.produce([ImageCashService class]);
+		ServicesProvider *services = [[ServicesProvider instance] initWithNetService:netSetvice userService:userService imageCash:imageCash];
+		netSetvice.owner = services;
+		userService.owner = services;
+		imageCash.owner = services;
+		return services;
+	}).produce([ServicesProvider class]);
+
 	
 	//setting up the App.
 
@@ -191,31 +212,12 @@
 		return @(pagesInt ? YES : NO);
 	});
 
-
 	NewsWebPresentationViewController *webController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsWebController"];
 
 	MainScreenControllerViewController *mainController = (MainScreenControllerViewController*)self.window.rootViewController;
 	mainController.leftController = newsListsContainer;
 	mainController.rightController = webController;
-
-	_services = [SPFabric new].registerClass([UserService class], ^(SPProducer *producer){
-		return [[UserService alloc] init];
-	}).registerClass([NetService class], ^(SPProducer *produder){
-		return [[NetService alloc] init];
-	}).registerClass([ImageCashService class], ^(SPProducer *producer){
-		return [[ImageCashService alloc] init];
-	}).registerClass([ServicesProvider class], ^(SPProducer *producer){
-		NetService *netSetvice = producer.produce([NetService class]);
-		UserService *userService = producer.produce([UserService class]);
-		ImageCashService *imageCash = producer.produce([ImageCashService class]);
-		ServicesProvider *services = [[ServicesProvider instance] initWithNetService:netSetvice userService:userService imageCash:imageCash];
-		netSetvice.owner = services;
-		userService.owner = services;
-		imageCash.owner = services;
-		return services;
-	}).produce([ServicesProvider class]);
 	
-	//@TODO: after login or registration.
 	[self startUpdate];
 	
 	return YES;

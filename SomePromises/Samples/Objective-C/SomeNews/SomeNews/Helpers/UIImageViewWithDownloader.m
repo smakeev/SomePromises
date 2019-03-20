@@ -43,7 +43,7 @@
 		self->_cell.imageDownloadingIndicator.hidden = NO;
 		[self->_cell.imageDownloadingIndicator startAnimating];
 	}
-	
+	SPMaybe *cell = @sp_weak_maybe(_cell);
 	_url = [imageUrl copy];
 	NSString *requestURL = [_url copy];
 	
@@ -80,14 +80,18 @@
 			if(error != nil) {
 				[Services.images addImage:result toUrl:self->_url];
 			}
-			[self->_cell.imageDownloadingIndicator stopAnimating];
-			self->_cell.imageDownloadingIndicator.hidden = YES;
+			cell.map(^(NewsListTableViewCell *validCell){
+				[validCell.imageDownloadingIndicator stopAnimating];
+				validCell.imageDownloadingIndicator.hidden = YES;
+			});
 		});
 		@sp_avoidend(self)
 		}];
 		[_imageDownloader resume];
-		[_cell.imageDownloadingIndicator startAnimating];
-		_cell.imageDownloadingIndicator.hidden = NO;
+		cell.map(^(NewsListTableViewCell *validCell) {
+			[validCell.imageDownloadingIndicator startAnimating];
+			validCell.imageDownloadingIndicator.hidden = NO;
+		});
 }
 
 - (void) dealloc

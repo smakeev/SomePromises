@@ -31,6 +31,7 @@
 	
 	__weak IBOutlet NSLayoutConstraint *_findTextFieldTrailingConstraint;
 	
+	__weak IBOutlet UILabel *searchSring;
 	MenuViewController *_menuPresenter;
 }
 
@@ -89,6 +90,11 @@
 		}];
 	})) = @sp_observe(_menuPresenter, menuShownPercent);
 	@sp_avoidend(self)
+	
+	Services.user.state.bind(self, ^(NSString *search) {
+		NSLog(@"!! Search for: %@", search);
+		self->searchSring.text = search;
+	});
 }
 
 - (void) viewWillAppear:(BOOL)animated

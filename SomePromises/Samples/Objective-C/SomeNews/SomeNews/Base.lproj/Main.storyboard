@@ -654,20 +654,29 @@
                                             <constraint firstAttribute="height" constant="32" id="xoK-nX-qmx"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="3fJ-ef-8P1">
+                                        <rect key="frame" x="8" y="0.0" width="818" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="5P9-JI-gMZ" firstAttribute="leading" secondItem="FuW-ZE-ayy" secondAttribute="trailing" constant="8" id="0B5-QT-ogP"/>
                                     <constraint firstAttribute="bottom" secondItem="FuW-ZE-ayy" secondAttribute="bottom" constant="8" id="20G-sd-mFN"/>
+                                    <constraint firstItem="3fJ-ef-8P1" firstAttribute="leading" secondItem="VBI-to-S1C" secondAttribute="leading" constant="8" id="BJv-a0-h3H"/>
                                     <constraint firstAttribute="bottom" secondItem="OO9-Vl-zXs" secondAttribute="bottom" constant="8" id="E9S-7C-hsX"/>
                                     <constraint firstAttribute="trailing" secondItem="A4O-E7-7pz" secondAttribute="trailing" constant="8" id="MSN-ku-KpW"/>
                                     <constraint firstItem="H6R-Vt-Pfe" firstAttribute="centerX" secondItem="VBI-to-S1C" secondAttribute="centerX" id="TJj-j8-UVT"/>
                                     <constraint firstItem="FuW-ZE-ayy" firstAttribute="leading" secondItem="VBI-to-S1C" secondAttribute="leading" constant="8" id="TVS-99-EZl"/>
+                                    <constraint firstAttribute="trailing" secondItem="3fJ-ef-8P1" secondAttribute="trailing" constant="8" id="YUS-C1-ZEb"/>
                                     <constraint firstAttribute="bottom" secondItem="b9B-Bb-GnR" secondAttribute="bottom" constant="8" id="ffO-em-s8O"/>
                                     <constraint firstAttribute="height" constant="80" id="gqO-0l-4kf"/>
                                     <constraint firstAttribute="bottom" secondItem="A4O-E7-7pz" secondAttribute="bottom" constant="8" id="j6m-tR-bjd"/>
                                     <constraint firstAttribute="bottom" secondItem="H6R-Vt-Pfe" secondAttribute="bottom" constant="8" id="lwa-K2-SJM"/>
                                     <constraint firstAttribute="bottom" secondItem="5P9-JI-gMZ" secondAttribute="bottom" constant="8" id="lyq-3u-lOI"/>
+                                    <constraint firstItem="A4O-E7-7pz" firstAttribute="top" secondItem="3fJ-ef-8P1" secondAttribute="bottom" constant="3" id="oZC-CR-46U"/>
                                     <constraint firstItem="A4O-E7-7pz" firstAttribute="leading" secondItem="b9B-Bb-GnR" secondAttribute="trailing" constant="8" id="szr-J9-KND"/>
                                     <constraint firstItem="A4O-E7-7pz" firstAttribute="leading" secondItem="OO9-Vl-zXs" secondAttribute="trailing" constant="8" id="zCD-7i-gFq"/>
                                 </constraints>
@@ -707,12 +716,13 @@
                         <outlet property="_textFieldContainerConstraint" destination="91Y-7d-RXW" id="3zV-xY-CgD"/>
                         <outlet property="containerView" destination="IPX-G8-kL0" id="0Xa-VG-qZN"/>
                         <outlet property="flipButton" destination="A4O-E7-7pz" id="zv3-Pc-fLF"/>
+                        <outlet property="searchSring" destination="3fJ-ef-8P1" id="Umg-d5-VOn"/>
                         <outlet property="topView" destination="VBI-to-S1C" id="RRI-YZ-9ZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpS-22-LHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-880" y="-1022"/>
+            <point key="canvasLocation" x="-880.57553956834533" y="-1022.4820143884892"/>
         </scene>
         <!--News Web Presentation View Controller-->
         <scene sceneID="c8w-EP-3va">

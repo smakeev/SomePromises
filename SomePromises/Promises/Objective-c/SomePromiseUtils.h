@@ -439,11 +439,11 @@ typedef void (^SPListener)(T _Nullable);
 *
 *	params:
 *		target - is a listener owner. An object representing a listener.
-*				 Targer is stored weakly. If it becimes nil listener will no longer get updates.
+*				 Targer is stored weakly. If it becomes nil listener will no longer get updates.
 *				 It will be deleted also. So it is used for listener lifetime.
 *				 NOTE!: if you want some listener to be permanent just call it with some always existing target.
 *				 Also target can be used to unsubscribe for particular listeners.
-*				 NOTE!: Thre could be many listeners for one target. They all will be deleted on unsubscribe for target.
+*				 NOTE!: There could be many listeners for one target. They all will be deleted on unsubscribe for target.
 *		listener - a block with one parameter. Parameter represents new value of a ClassBox.
 *
 ************************************************************************************************************************/

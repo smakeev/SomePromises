@@ -124,6 +124,16 @@
 	});
 }
 
+- (void) reset {
+	dispatch_sync(self->_sync, ^{
+		self->_index = 0;
+		[self->_moreDownloader rejectAllInChain];
+		self->_articles = [SPArray new];
+		self->_pages = [SPArray new];
+		[self spTrigger:modelRecreated message:nil];
+	});
+}
+
 - (void) recreateWithFirstPageAndTotalElementsCount:(SPPair*)JSONandCount
 {
 	__block NSArray *pageJSON = nil;

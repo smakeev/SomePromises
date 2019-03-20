@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly, copy)NSString *source;
 @property (nonatomic, readonly, copy)NSString *querry;
+@property (nonatomic, readonly) SomeClassBox<NSString*> *state;
 
 - (NSString*) getCountry;
 - (void) setCountry:(NSString*)country;

@@ -66,6 +66,9 @@
 	return nil;
 }
 
+- (BOOL) isWeak {
+	return NO;
+}
 
 @end
 
@@ -78,6 +81,7 @@
 @interface SPSome : SomePromiseMayBeCreator <SPMaybe>
 {
 	id _value;
+	__weak id _weakValue;
 }
 @end
 
@@ -87,7 +91,9 @@
 {
 	if(self.providedType)
 		return self.providedType;
-	return [_value class];
+	if (_value)
+		return [_value class];
+	return [_weakValue class];
 }
 
 - (instancetype) initWithValue:(id)value
@@ -100,44 +106,72 @@
 	return self;
 }
 
+- (instancetype) initWithWeakValue:(id)value
+{
+	self = [super init];
+	if(self)
+	{
+		_weakValue = value;
+	}
+	return self;
+
+}
+
 - (id)get
 {
-	return _value;
+	return _value ? : _weakValue;
 }
 
 - (id)getOrElse:(id)defaultValue
 {
-	return _value;
+	return _value ? : _weakValue;
 }
 
 - (BOOL)isNone
 {
-	return NO;
+	return _value ? NO : _weakValue ? NO : YES;
 }
 
 - (BOOL)isSome
 {
-	return YES;
+	return ![self isNone];
 }
 
 - (SPMaybe *_Nonnull)noNil:(id)insteadNilValue
 {
-	return self;
+	if(_value || _weakValue)
+		return self;
+	return @sp_maybe(insteadNilValue);
 }
 
 - (void) unwrapWithBlock:(void(^)(id value))block
 {
-	block(_value);
+	if(_value)
+		block(_value);
+	else if (_weakValue) {
+		block(_weakValue);
+	}
 }
 
 - (id) unwrap
 {
-	return _value;
+	return _value ? : _weakValue ? : nil;
 }
 
 - (void) unwrapWithBlock:(void(^)(id _Nonnull value))block else:(void(^)(void))elseBlock
 {
-	block(_value);
+	if(_value) {
+		block(_value);
+	} else if (_weakValue) {
+		block(_weakValue);
+	}
+	else {
+		elseBlock();
+	}
+}
+
+- (BOOL) isWeak {
+	return _weakValue ? YES : NO;
 }
 
 @end
@@ -159,6 +193,12 @@
 	return [[SPSome alloc] initWithValue:value];
 }
 
++ (id<SPMaybe>)some:(id)value weak:(BOOL) weak
+{
+	guard (value) else {return [SomePromiseMayBeCreator none];}
+	return [[SPSome alloc] initWithWeakValue:value];
+}
+
 + (id<SPMaybe>)none
 {
 	static dispatch_once_t onceToken;
@@ -175,6 +215,14 @@
 	if(value)
 	{
 		return [SomePromiseMayBeCreator some:value];
+	}
+	return [SomePromiseMayBeCreator none];
+}
+
++ (SPMaybe *_Nonnull)noNil:(id _Nullable)value weak:(BOOL) weak {
+	if(value)
+	{
+		return [SomePromiseMayBeCreator some:value weak: weak];
 	}
 	return [SomePromiseMayBeCreator none];
 }
@@ -211,6 +259,46 @@
 	block([values copy]);
 }
 
+- (void) map:(void(^)(id value)) mapBlock {
+	if(![self isNone])
+	{
+		mapBlock(self.unwrap);
+	}
+}
+- (SPMaybe*) flatMap:(SPMaybe*(^)(id value)) mapBlock
+{
+	if(![self isNone])
+	{
+		SPMaybe *result = mapBlock(self.unwrap);
+		return result;
+	}
+	else
+	{
+		return @sp_maybe(nil);
+	}
+}
+
+- (void (^ __nonnull)(void (^ _Nonnull)(id)))map
+{
+	__weak SPMaybe *weakSelf = self;
+	return [^void(void(^block)(id))
+	{
+		__strong SPMaybe *strongSelf = weakSelf;
+		return [strongSelf map:block];
+	} copy];
+}
+
+- (SPMaybe* (^ __nonnull)(SPMaybe* (^ _Nonnull)(id)))flatMap
+{
+	__weak SPMaybe *weakSelf = self;
+	return [^SPMaybe*(SPMaybe*(^block)(id))
+	{
+		__strong SPMaybe *strongSelf = weakSelf;
+		return [strongSelf flatMap:block];
+	} copy];
+}
+
+
 - (BOOL) isNone {[self doesNotRecognizeSelector:_cmd]; return NO;}
 
 - (BOOL) isSome {[self doesNotRecognizeSelector:_cmd]; return NO;}
@@ -226,5 +314,10 @@
 - (void) unwrapWithBlock:(void(^)(id _Nonnull value))block {[self doesNotRecognizeSelector:_cmd];}
 
 - (void) unwrapWithBlock:(void(^)(id _Nonnull value))block else:(void(^)(void))elseBlock {[self doesNotRecognizeSelector:_cmd];}
+
+- (BOOL)isWeak {
+	[self doesNotRecognizeSelector:_cmd]; return NO;
+}
+
 
 @end
