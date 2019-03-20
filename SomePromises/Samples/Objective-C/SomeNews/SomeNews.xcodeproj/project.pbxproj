@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B6137029216643C300857AB1 /* RequestService.m in Sources */ = {isa = PBXBuildFile; fileRef = B6137028216643C300857AB1 /* RequestService.m */; };
+		B61539002242B62700AC2B78 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B61538FF2242B62700AC2B78 /* MenuModel.m */; };
 		B616448F216946D00036731D /* NewsOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B616448E216946D00036731D /* NewsOptionsViewController.m */; };
 		B61644922169535E0036731D /* NewsOptionsMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = B61644912169535E0036731D /* NewsOptionsMainView.m */; };
 		B617AAE521D6B4040088375A /* SomePromiseFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = B617AAE121D6B4030088375A /* SomePromiseFunctor.m */; };
@@ -134,6 +135,8 @@
 /* Begin PBXFileReference section */
 		B6137027216643C300857AB1 /* RequestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestService.h; sourceTree = "<group>"; };
 		B6137028216643C300857AB1 /* RequestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestService.m; sourceTree = "<group>"; };
+		B61538FE2242B62700AC2B78 /* MenuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuModel.h; sourceTree = "<group>"; };
+		B61538FF2242B62700AC2B78 /* MenuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuModel.m; sourceTree = "<group>"; };
 		B616448D216946D00036731D /* NewsOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsOptionsViewController.h; sourceTree = "<group>"; };
 		B616448E216946D00036731D /* NewsOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsOptionsViewController.m; sourceTree = "<group>"; };
 		B61644902169535E0036731D /* NewsOptionsMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsOptionsMainView.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 			children = (
 				B631C1A2214943200080A7D2 /* ArticlesModel.h */,
 				B631C1A3214943200080A7D2 /* ArticlesModel.m */,
+				B61538FE2242B62700AC2B78 /* MenuModel.h */,
+				B61538FF2242B62700AC2B78 /* MenuModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				B6334244214D453600B9E7E6 /* ListsNewsContainerViewController.m in Sources */,
 				B62FD250217A731A001CF673 /* CountriesViewController.m in Sources */,
 				B65C7CC2214E78BE00F83502 /* ContainerableProtocolStrategy.m in Sources */,
+				B61539002242B62700AC2B78 /* MenuModel.m in Sources */,
 				B631C1A4214943200080A7D2 /* ArticlesModel.m in Sources */,
 				B617AAE521D6B4040088375A /* SomePromiseFunctor.m in Sources */,
 				B679B4952147F5CA0028408E /* UserService.m in Sources */,

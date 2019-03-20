@@ -15,6 +15,7 @@
 @property (nonatomic, readonly, copy)NSString *querry;
 @property (nonatomic, readonly) SomeClassBox<NSString*> *state;
 
+- (void) restoreFromDefaults;
 - (NSString*) getCountry;
 - (void) setCountry:(NSString*)country;
 - (NSString*) getLanguage;

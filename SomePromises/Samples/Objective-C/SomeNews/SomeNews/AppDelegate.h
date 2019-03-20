@@ -11,6 +11,7 @@
 
 @protocol ServicesProviderProtocol;
 @class ArticlesModel;
+@class MenuModel;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -18,8 +19,9 @@
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 @property (readonly, nonatomic) NSObject<ServicesProviderProtocol> *services;
 @property (readonly, nonatomic) ArticlesModel *model;
+@property (readonly, nonatomic) MenuModel *modelMenu;
 
-- (void)saveContext;
+- (void) saveContext;
 - (void) startUpdate;
 - (void) startAddingPage;
 

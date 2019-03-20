@@ -9,6 +9,10 @@
 #import "UserService.h"
 #import "ServicesProvider.h"
 
+#define LANGUAGEKEY @"Language"
+#define COUNTRYKEY @"Country"
+#define CATEGORYKEY @"Category"
+
 @interface UserService ()
 {
 	NSString *_querry;
@@ -39,7 +43,29 @@
 
 - (void) updateState
 {
-	_state.value = [NSString stringWithFormat:@"Where:%@  Cat:%@  What:%@", _country ? : _language ? : @"Any", _category ? : @"Any", _querry ? : @""];
+
+	NSString *where = _country ? : _language ? : @"Any";
+	NSString *category = _category ? : @"Any";
+
+	_state.value = [NSString stringWithFormat:@"Where:%@  Cat:%@  What:%@", where, category, _querry ? : @""];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:_country forKey:COUNTRYKEY];
+	[defaults setObject:_language forKey:LANGUAGEKEY];
+	[defaults setObject:category forKey:CATEGORYKEY];
+	[defaults synchronize];
+}
+
+- (void) restoreFromDefaults {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *language = [defaults objectForKey:LANGUAGEKEY];
+	NSString *country = [defaults objectForKey:COUNTRYKEY];
+	NSString *category = [defaults objectForKey:CATEGORYKEY];
+	if (language) {
+	   [self setLanguage:language];
+	} else {
+		[self setCountry:country];
+		[self setCategory:category];
+	}
 }
 
 - (NSString*) getCountry
@@ -88,7 +114,7 @@
 
 - (void) setCategory:(NSString*)category
 {
-	if([category isEqualToString:@"all"])
+	if([category isEqualToString:@"all"] || [category isEqualToString:@"Any"])
 	{
 		_category = nil;
 	}

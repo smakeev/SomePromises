@@ -8,6 +8,8 @@
 
 #import "MenuViewController.h"
 #import "MenuView.h"
+#import "AppDelegate.h"
+#import "MenuModel.h"
 
 @interface MenuViewController ()
 {
@@ -17,6 +19,9 @@
 	__weak IBOutlet UIView *_menuSpaceView;
 
 	__weak IBOutlet NSLayoutConstraint *_menuSpaceWidth;
+	__weak IBOutlet UISegmentedControl *_startFromSegmentedControl;
+	
+	__weak MenuModel *_modelMenu;
 }
 
 @property (nonatomic) BOOL menuShown;
@@ -64,6 +69,9 @@
 		}
 	})) = @sp_observe(_background, bounds);
 	@sp_avoidend(self)
+	
+	_modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
+	_startFromSegmentedControl.selectedSegmentIndex = _modelMenu.startSearch;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -146,6 +154,8 @@
 	}];
 }
 
-
+- (IBAction)startSearchChanged:(UISegmentedControl*)sender {
+	_modelMenu.startSearch = sender.selectedSegmentIndex;
+}
 
 @end

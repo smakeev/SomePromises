@@ -30,13 +30,36 @@
                                         <rect key="frame" x="750.5" y="0.0" width="83.5" height="1092"/>
                                         <color key="backgroundColor" name="PulsingLayerColor"/>
                                     </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fBc-q3-UJ0">
+                                        <rect key="frame" x="7.5" y="47.5" width="735.5" height="29"/>
+                                        <segments>
+                                            <segment title="Location"/>
+                                            <segment title="Last"/>
+                                            <segment title="Nothing"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="startSearchChanged:" destination="kcL-Su-GfA" eventType="valueChanged" id="BqK-jm-Ib5"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start search from:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="QhN-J8-ISE">
+                                        <rect key="frame" x="8" y="8" width="734.5" height="31.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="background"/>
                                 <constraints>
+                                    <constraint firstItem="QhN-J8-ISE" firstAttribute="top" secondItem="PRI-Mx-Kwb" secondAttribute="top" constant="8" id="2ck-wA-LDI"/>
                                     <constraint firstItem="Bqk-da-zWB" firstAttribute="width" secondItem="PRI-Mx-Kwb" secondAttribute="width" multiplier="0.1" id="47U-tD-edP"/>
+                                    <constraint firstItem="Bqk-da-zWB" firstAttribute="leading" secondItem="QhN-J8-ISE" secondAttribute="trailing" constant="8" id="4Td-W0-QjC"/>
                                     <constraint firstAttribute="bottom" secondItem="Bqk-da-zWB" secondAttribute="bottom" id="6hM-0m-sq3"/>
+                                    <constraint firstItem="Bqk-da-zWB" firstAttribute="leading" secondItem="fBc-q3-UJ0" secondAttribute="trailing" constant="7.5" id="DL9-mq-0PE"/>
                                     <constraint firstAttribute="trailing" secondItem="Bqk-da-zWB" secondAttribute="trailing" id="Na2-K4-gMS"/>
+                                    <constraint firstItem="fBc-q3-UJ0" firstAttribute="leading" secondItem="PRI-Mx-Kwb" secondAttribute="leading" constant="7.5" id="c0L-54-Em3"/>
+                                    <constraint firstItem="fBc-q3-UJ0" firstAttribute="top" secondItem="QhN-J8-ISE" secondAttribute="bottom" constant="8" id="cye-8J-KQY"/>
                                     <constraint firstItem="Bqk-da-zWB" firstAttribute="top" secondItem="PRI-Mx-Kwb" secondAttribute="top" id="hcp-wk-6K6"/>
+                                    <constraint firstItem="QhN-J8-ISE" firstAttribute="leading" secondItem="PRI-Mx-Kwb" secondAttribute="leading" constant="8" id="qWn-TK-Lul"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFE-e7-dEc">
@@ -73,12 +96,13 @@
                         <outlet property="_menuSpaceWidth" destination="b6A-ty-UHd" id="0Js-Fz-Bkr"/>
                         <outlet property="_menuTouchView" destination="Bqk-da-zWB" id="t1b-tn-cAj"/>
                         <outlet property="_menuView" destination="PRI-Mx-Kwb" id="og6-OY-Hd4"/>
+                        <outlet property="_startFromSegmentedControl" destination="fBc-q3-UJ0" id="Hu3-24-C2R"/>
                         <outlet property="menuView" destination="PRI-Mx-Kwb" id="KnM-L9-eG7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZk-Wf-QZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1579" y="-1022"/>
+            <point key="canvasLocation" x="-1579.1366906474821" y="-1022.4820143884892"/>
         </scene>
         <!--Main Screen Controller View Controller-->
         <scene sceneID="5Iv-oe-EDP">

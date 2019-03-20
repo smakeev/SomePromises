@@ -19,17 +19,19 @@
 #import "ListsNewsContainerViewController.h"
 #import "MainScreenControllerViewController.h"
 #import "NewsWebPresentationViewController.h"
+#import "MenuModel.h"
 
 #import "RequestService.h"
 
 @interface AppDelegate ()
 {
 	
-	ServicesProvider *_services;
-	ArticlesModelView *_modelView;
-	__weak SomePromise *_netWorker;
+	       ServicesProvider   *_services;
+	       ArticlesModelView  *_modelView;
+	       MenuModel          *_modelMenu;
+	__weak SomePromise        *_netWorker;
 	
-	RequestService *_cashedRequestsInfo;
+	       RequestService     *_cashedRequestsInfo;
 }
 
 @property (atomic) NSMutableArray<SomePromise*> *addingArticlesChain;
@@ -191,9 +193,12 @@
 	
 	//setting up the App.
 
+	//Models and viewModels
 	_model = [ArticlesModel new];
 	_modelView = [[ArticlesModelView alloc] initWithModel:_model];
+	_modelMenu = [[MenuModel alloc] init];
 	
+	//UI
 	NewsListViewController *leftController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainNewsListController"];
 	leftController.viewType = EViewType_BYSOURCE;
 	[leftController setupWithViewModel:_modelView];
@@ -208,7 +213,6 @@
 
 	@sp_uibind(newsListsContainer.moreButton, enabled) = @sp_observe(_model, pagesRemain).map(^(NSNumber *pages){
 		NSInteger pagesInt = [pages integerValue];
-		//NSLog(@"#### %@", pages);
 		return @(pagesInt ? YES : NO);
 	});
 
@@ -218,8 +222,10 @@
 	mainController.leftController = newsListsContainer;
 	mainController.rightController = webController;
 	
+	if (_modelMenu.startSearch == ESearchOnStartType_Last) {
+		[Services.user restoreFromDefaults];
+	}
 	[self startUpdate];
-	
 	return YES;
 }
 

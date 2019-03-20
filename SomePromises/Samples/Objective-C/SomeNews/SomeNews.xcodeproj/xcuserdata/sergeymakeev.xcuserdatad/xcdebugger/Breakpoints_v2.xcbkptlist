@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SomeNews/Views/NewsListTableViewCell.m"
-            timestampString = "573939674.759077"
+            timestampString = "574727869.532707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SomeNews/Views/NewsListTableViewCell.m"
-            timestampString = "573939674.759143"
+            timestampString = "574727869.53277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SomeNews/ViewControllers/NewsListViewController.m"
-            timestampString = "573937326.545802"
+            timestampString = "574801136.987067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "228"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SomeNews/ViewControllers/NewsListViewController.m"
-            timestampString = "573937326.545841"
+            timestampString = "574801136.987149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SomeNews/ViewControllers/NewsListViewController.m"
-            timestampString = "573937326.5458781"
+            timestampString = "574801136.9872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -102,16 +102,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SomeNews/Helpers/UIImageViewWithDownloader.m"
-            timestampString = "573939674.759302"
+            filePath = "SomeNews/Models/ArticlesModel.m"
+            timestampString = "574727869.532897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-setImageUrl:"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-recreateWithFirstPageAndTotalElementsCount:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +121,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SomeNews/Helpers/UIImageViewWithDownloader.m"
-            timestampString = "573939674.7596641"
+            filePath = "SomeNews/Services/UserService.m"
+            timestampString = "574804598.778301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-setImageUrl:"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-setQuerry:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SomeNews/Helpers/UIImageViewWithDownloader.m"
-            timestampString = "573939674.75992"
+            filePath = "SomeNews/Services/UserService.m"
+            timestampString = "574804598.778406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "-setImageUrl:"
+            landmarkName = "-restoreFromDefaults"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
