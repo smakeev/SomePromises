@@ -1155,6 +1155,9 @@ hPromise hPromise_create(id creationBlock);
 *************************************************************************************************************************************/
 SomePromise* spTry(hPromise creationBlock, ...); //#PROMISE_HELPER
 
+//Reject promise with error.
+void spReject(NSError *error); //#PROMISE_HELPER
+
 @interface SomePromise (SomePromise_Helper)
 
 /***********************************************************************************************************************************

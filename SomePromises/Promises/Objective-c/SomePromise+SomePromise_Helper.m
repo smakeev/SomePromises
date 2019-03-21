@@ -14,6 +14,11 @@ hPromise hPromise_create(id creationBlock)
    return [creationBlock copy];
 }
 
+//will work only inside Promise helpers like spTry spNex and so on.
+void spReject(NSError *error) {
+	@throw (error);
+}
+
 SomePromise* spTry(id creationBlock, ...)
 {
  // creationBlock = [creationBlock copy];
