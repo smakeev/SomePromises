@@ -11,8 +11,16 @@
 
 @protocol UserServiceProviderProtocol;
 @protocol ServicesProviderProtocol;
-@interface UserService : NSObject <UserServiceProviderProtocol>
 
+@protocol UserServiceDelegate <NSObject>
+- (void) onUserHasChangedUserData;
+@end
+
+@interface UserService : NSObject <UserServiceProviderProtocol>
+{
+	__weak id<UserServiceDelegate> _delegate;
+}
+@property (nonatomic, weak) id<UserServiceDelegate> delegate;
 @property (nonatomic, copy) NSString *querry;
 
 @property (nonatomic, weak) id<ServicesProviderProtocol> owner;

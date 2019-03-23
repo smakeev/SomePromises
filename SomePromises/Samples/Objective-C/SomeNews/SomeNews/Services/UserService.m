@@ -53,6 +53,8 @@
 	[defaults setObject:_language forKey:LANGUAGEKEY];
 	[defaults setObject:category forKey:CATEGORYKEY];
 	[defaults synchronize];
+	
+	[_delegate onUserHasChangedUserData];
 }
 
 - (void) restoreFromDefaults {

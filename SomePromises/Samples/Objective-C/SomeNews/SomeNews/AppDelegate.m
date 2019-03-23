@@ -24,7 +24,7 @@
 #import "RequestService.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <UserServiceDelegate>
 {
 	
 	       ServicesProvider   *_services;
@@ -34,6 +34,7 @@
 	
 	       RequestService     *_cashedRequestsInfo;
 	       CLLocationManager  *_manager;
+	       SomePromise        *_locationDetector;
 }
 
 @property (atomic) NSMutableArray<SomePromise*> *addingArticlesChain;
@@ -191,7 +192,7 @@
 		imageCash.owner = services;
 		return services;
 	}).produce([ServicesProvider class]);
-
+	Services.user.delegate = self;
 	
 	//setting up the App.
 
@@ -228,6 +229,7 @@
 		[Services.user restoreFromDefaults];
 	} else if (_modelMenu.startSearch == ESearchOnStartType_Location) {
 			_manager = [[CLLocationManager alloc] init];
+			_locationDetector = (SomePromise*)
 			[SomePromise promiseWithName:@"AskForLocationPromise"
 							   resolvers:^(FulfillBlock fulfill, RejectBlock reject, IsRejectedBlock isRejected, ProgressBlock progress) {
 				self->_manager.delegate = [SomePromiseObject createObjectBasedOn:[NSObject class]
@@ -284,7 +286,7 @@
 				}
 			} class:[NSString class]].onReject(^(NSError* error) {
 				//show alert
-				guard (!error) else {return;} //if there is error, than error is in geocode. Don't show the alert though
+				guard (!error) else {return;} //if there is error, than error is in geocode or rejected by user action. Don't show the alert though
 				 dispatch_async(dispatch_get_main_queue(), ^{
 					UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Location Service Disabled" message:@"Enable Location Services in Settings to allow the app to determine your current location." preferredStyle:UIAlertControllerStyleAlert];
 					UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -306,6 +308,11 @@
 	return YES;
 }
 
+- (void) onUserHasChangedUserData {
+	guard (_locationDetector) else {return;}
+	[_locationDetector rejectWithError:rejectionErrorWithText(@"User changed info", ESomePromiseError_ConditionReturnsFalse)];
+	_locationDetector = nil;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

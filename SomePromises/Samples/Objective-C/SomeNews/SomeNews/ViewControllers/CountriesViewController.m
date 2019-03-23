@@ -39,7 +39,7 @@
 				{
 					for(NSDictionary *country in _countries)
 					{
-						if([country[@"key"] isEqualToString:countryString])
+						if([country[@"key"] caseInsensitiveCompare:countryString] == NSOrderedSame)
 						{
 							break;
 						}

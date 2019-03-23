@@ -9,8 +9,10 @@
 #ifndef UserServiceProviderProtocol_h
 #define UserServiceProviderProtocol_h
 
+@protocol UserServiceDelegate;
 @protocol UserServiceProviderProtocol <NSObject>
 
+@property (nonatomic, weak) id<UserServiceDelegate> delegate;
 @property (nonatomic, readonly, copy)NSString *source;
 @property (nonatomic, readonly, copy)NSString *querry;
 @property (nonatomic, readonly) SomeClassBox<NSString*> *state;
