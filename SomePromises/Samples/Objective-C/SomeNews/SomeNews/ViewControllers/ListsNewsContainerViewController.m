@@ -28,8 +28,8 @@
 	__weak IBOutlet UIButton *_extendButton;
 	__weak IBOutlet UIView *_textFieldContainer;
 	__weak IBOutlet NSLayoutConstraint *_textFieldContainerConstraint;
-	
 	__weak IBOutlet NSLayoutConstraint *_findTextFieldTrailingConstraint;
+	__weak IBOutlet NSLayoutConstraint *_findContainerTrailingForPlusInLandscapeConstraint;
 	
 	__weak IBOutlet UILabel *searchSring;
 	MenuViewController *_menuPresenter;
@@ -221,6 +221,9 @@
 	{
 		_findTextFieldTrailingConstraint.constant = 32;
 		_textFieldContainerConstraint.constant = 200;
+		if(_findContainerTrailingForPlusInLandscapeConstraint) {
+			_findContainerTrailingForPlusInLandscapeConstraint.active = NO;
+		}
 		_findTextField.enabled = YES;
 		[_findTextField becomeFirstResponder];
 		_findFieldActive = YES;
@@ -230,6 +233,15 @@
 		_findFieldActive = NO;
 		_textFieldContainerConstraint.constant = 32;
 		_findTextFieldTrailingConstraint.constant = 16;
+		if(_findContainerTrailingForPlusInLandscapeConstraint) {
+			NSInteger horizontalClass = self.traitCollection.horizontalSizeClass;
+			NSInteger verticalCass = self.traitCollection.verticalSizeClass;
+			if (horizontalClass == UIUserInterfaceSizeClassRegular &&
+				verticalCass    == UIUserInterfaceSizeClassCompact) {
+				_findContainerTrailingForPlusInLandscapeConstraint.active = YES;
+			}
+		}
+
 		[_findTextField resignFirstResponder];
 		_findTextField.enabled = NO;
 	}
@@ -238,6 +250,10 @@
 		[self.view layoutIfNeeded];
 	}];
 }
+
+- (IBAction)locationPressed:(id)sender {
+}
+
 
 - (IBAction)menuPressed:(id)sender
 {
