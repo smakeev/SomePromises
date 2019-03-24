@@ -14,6 +14,9 @@
 
 #import "MenuViewController.h"
 
+@interface ListsNewsContainerViewController (PopoverPresentationDelegate) <UIPopoverPresentationControllerDelegate>
+@end
+
 @interface ListsNewsContainerViewController () <AlertsPresenterProtocol, UITextFieldDelegate>
 {
 	SPPair<NewsListViewController*, NewsListViewController*> *_tableControllersPair;
@@ -33,6 +36,7 @@
 	
 	__weak IBOutlet UILabel *searchSring;
 	MenuViewController *_menuPresenter;
+	UIViewController *_locationPopoverController;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *flipButton;
@@ -251,9 +255,17 @@
 	}];
 }
 
-- (IBAction)locationPressed:(id)sender {
-}
+- (IBAction)locationPressed:(UIButton*)sender {
+	if (!_locationPopoverController) {
+		_locationPopoverController = [UIViewController new];
+		_locationPopoverController.modalPresentationStyle = UIModalPresentationPopover;
+	}
 
+	_locationPopoverController.popoverPresentationController.sourceView = sender;
+	_locationPopoverController.popoverPresentationController.sourceRect = sender.bounds;
+	_locationPopoverController.popoverPresentationController.delegate = self;
+	[self.view.window.rootViewController presentViewController:_locationPopoverController animated:YES completion:nil];
+}
 
 - (IBAction)menuPressed:(id)sender
 {
@@ -343,3 +355,14 @@
 }
 
 @end
+
+@implementation ListsNewsContainerViewController (PopoverPresentationDelegate)
+
+// Returning UIModalPresentationNone will indicate that an adaptation should not happen.
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection
+{
+	return UIModalPresentationNone;
+}
+
+@end
+

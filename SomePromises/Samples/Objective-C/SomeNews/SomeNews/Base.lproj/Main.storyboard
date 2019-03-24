@@ -174,9 +174,6 @@
                                 <exclude reference="rck-5d-FOY"/>
                                 <exclude reference="tgn-aB-gPm"/>
                                 <exclude reference="wA0-z8-fFI"/>
-                                <exclude reference="Get-fO-407"/>
-                                <exclude reference="fD6-2w-58O"/>
-                                <exclude reference="w6M-h0-bp7"/>
                                 <exclude reference="5Rg-79-uYh"/>
                                 <exclude reference="8En-SR-4LS"/>
                                 <exclude reference="CMT-oH-0An"/>
@@ -186,6 +183,9 @@
                                 <exclude reference="lp9-em-xLS"/>
                                 <exclude reference="tfR-ay-C0B"/>
                                 <exclude reference="w5m-CV-PiA"/>
+                                <exclude reference="Get-fO-407"/>
+                                <exclude reference="fD6-2w-58O"/>
+                                <exclude reference="w6M-h0-bp7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -198,38 +198,38 @@
                                 <include reference="cGE-fd-qjE"/>
                                 <include reference="rck-5d-FOY"/>
                                 <include reference="wA0-z8-fFI"/>
-                                <exclude reference="0Yb-2V-UoT"/>
                                 <include reference="CMT-oH-0An"/>
                                 <include reference="gLW-we-MnN"/>
+                                <exclude reference="0Yb-2V-UoT"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="Hxx-i1-ts4"/>
                                 <include reference="tgn-aB-gPm"/>
-                                <exclude reference="0Yb-2V-UoT"/>
-                                <include reference="w6M-h0-bp7"/>
                                 <include reference="5Rg-79-uYh"/>
                                 <exclude reference="8En-SR-4LS"/>
                                 <include reference="w5m-CV-PiA"/>
+                                <exclude reference="0Yb-2V-UoT"/>
+                                <include reference="w6M-h0-bp7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
                                 <include reference="7I0-SX-5vh"/>
                                 <include reference="aFe-Qf-AsW"/>
-                                <include reference="Get-fO-407"/>
                                 <include reference="dWQ-fc-iGe"/>
                                 <include reference="tfR-ay-C0B"/>
+                                <include reference="Get-fO-407"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="3hi-W7-pPf"/>
                                 <include reference="SQ6-Qj-GuV"/>
-                                <include reference="fD6-2w-58O"/>
                                 <include reference="RFp-TM-ftR"/>
                                 <include reference="lp9-em-xLS"/>
+                                <include reference="fD6-2w-58O"/>
                             </mask>
                         </variation>
                     </view>
@@ -653,7 +653,7 @@
                                         <rect key="frame" x="174" y="0.0" width="72" height="72"/>
                                         <state key="normal" image="location"/>
                                         <connections>
-                                            <action selector="locationPressed:" destination="KUc-qf-WTJ" eventType="touchUpInside" id="M9B-R9-DeN"/>
+                                            <action selector="locationPressed:" destination="KUc-qf-WTJ" eventType="touchUpInside" id="Hf9-HD-b20"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6R-Vt-Pfe">
