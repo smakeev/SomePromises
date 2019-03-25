@@ -58,16 +58,16 @@
 + (void) load
 {
 	static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-    	[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(AlertsPresenterProtocol) extention:[AlertsPresenterProtocolStrategy class] whereSelf:@protocol(NSObject)];
+	dispatch_once(&onceToken, ^{
+		[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(AlertsPresenterProtocol) extention:[AlertsPresenterProtocolStrategy class] whereSelf:@protocol(NSObject)];
 		[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(Containerable) extention:[ContainerableProtocolStrategy class] whereSelf:@protocol(NSObject)];
-    });
+	});
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    embededControllers = [SPArray new];
+	[super viewDidLoad];
+	embededControllers = [SPArray new];
 	if(!_initialized && _tableControllersPair.right && _tableControllersPair.left)
 	{
 		[self addTables];
@@ -115,7 +115,7 @@
 	[self.view bringSubviewToFront:self.flipButton];
 	static dispatch_once_t onceToken;
 	@sp_avoidblockretain(self);
-    dispatch_once(&onceToken, ^{
+	dispatch_once(&onceToken, ^{
 		@sp_strongify(self)
 		@sp_uibind(Services.user, querry) = @sp_observeTextField(self->_findTextField).filter(^(NSString *text){
 			@sp_strongify(self)
@@ -239,9 +239,7 @@
 		_findTextFieldTrailingConstraint.constant = 16;
 		if(_findContainerTrailingForPlusInLandscapeConstraint) {
 			NSInteger horizontalClass = self.traitCollection.horizontalSizeClass;
-			NSInteger verticalCass = self.traitCollection.verticalSizeClass;
-			if (horizontalClass == UIUserInterfaceSizeClassRegular &&
-				verticalCass    == UIUserInterfaceSizeClassCompact) {
+			if (horizontalClass == UIUserInterfaceSizeClassRegular) {
 				_findContainerTrailingForPlusInLandscapeConstraint.active = YES;
 			}
 		}
@@ -256,6 +254,9 @@
 }
 
 - (IBAction)locationPressed:(UIButton*)sender {
+	if (_findFieldActive) {
+		[self findPressed:nil];
+	}
 	if (!_locationPopoverController) {
 		_locationPopoverController = [UIViewController new];
 		_locationPopoverController.modalPresentationStyle = UIModalPresentationPopover;
@@ -352,6 +353,15 @@
 {
 	[self findPressed:nil];
 	return YES;
+}
+
+- (void) viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+
+	NSInteger horizontalClass = self.traitCollection.horizontalSizeClass;
+	if (horizontalClass == UIUserInterfaceSizeClassRegular && _findFieldActive) {
+		_findContainerTrailingForPlusInLandscapeConstraint.active = NO;
+	}
 }
 
 @end
