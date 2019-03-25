@@ -30,6 +30,10 @@
 - (void) awakeFromNib
 {
 	[super awakeFromNib];
+	[self initializeExplicitly];
+}
+
+- (void) initializeExplicitly {
 	_initialTransform = CGAffineTransformIdentity;
 	_pulsingHelper = [[ButtonPulsingLayerHelper alloc] initWithButton:self];
 }

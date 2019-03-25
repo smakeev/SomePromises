@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ActionButton : UIButton
 
+- (void) initializeExplicitly;
 @property (nonatomic, copy) void (^onCompetionAnimations)(void);
 
 @end

@@ -120,7 +120,7 @@
 										   bindLifetimeTo:nil
 											   definition:^(SomePromiseObject* creator) {
 							
-							 [creator override:@selector(numberOfSectionsInTableView:) with:^NSInteger(NSObject *self, UITableView *table){
+							 [creator create:@selector(numberOfSectionsInTableView:) with:^NSInteger(NSObject *self, UITableView *table){
 								 	if(weakListControllerRef.viewType == EViewType_TOP)
 										return 1;
 								 
@@ -129,7 +129,7 @@
 							 }];
 
 							//data source
-							 [creator override:@selector(tableView:numberOfRowsInSection:) with:^NSInteger(NSObject *self, UITableView *table, NSInteger section){
+							 [creator create:@selector(tableView:numberOfRowsInSection:) with:^NSInteger(NSObject *self, UITableView *table, NSInteger section){
 									SPArray *array = self.spGet(kArticles);
 								 	if(weakListControllerRef.viewType == EViewType_TOP)
 								 	{
@@ -142,7 +142,7 @@
 								 	return ((SPArray*)(array[section].value)).count;
 							 }];
 							 
-							[creator override:@selector(imageTapped:) with:^(NSObject *self, UITapGestureRecognizer *sender){
+							[creator create:@selector(imageTapped:) with:^(NSObject *self, UITapGestureRecognizer *sender){
 								NSString *additionalText = nil;
 								UIImageView *target = (UIImageView*)sender.view;
 								if(target.spHas(@"_errorText"))
@@ -189,7 +189,7 @@
 								}];
 							}];
 
-							[creator override:@selector(tableView:cellForRowAtIndexPath:) with:^UITableViewCell*(NSObject *self, UITableView *table, NSIndexPath *indexPath){
+							[creator create:@selector(tableView:cellForRowAtIndexPath:) with:^UITableViewCell*(NSObject *self, UITableView *table, NSIndexPath *indexPath){
 								
 
 								SPArray *array = self.spGet(kArticles);
@@ -337,7 +337,7 @@
 								return cell;
 							}];
 							
-							[creator override:@selector(tableView:heightForRowAtIndexPath:) with:^CGFloat(NSObject *self, UITableView *table, NSIndexPath *indexPath){
+							[creator create:@selector(tableView:heightForRowAtIndexPath:) with:^CGFloat(NSObject *self, UITableView *table, NSIndexPath *indexPath){
 									for(__IndexPathWrapper *extended in weakListControllerRef.extendedCells)
 									{
 										if(extended.rowIndex == indexPath.row && extended.sectionIndex == indexPath.section)
@@ -348,7 +348,7 @@
 									return kCellMinHeight;
 							}];
 							
-							[creator override:@selector(tableView:viewForHeaderInSection:) with:^UIView*(NSObject *self, UITableView *table, NSInteger section){
+							[creator create:@selector(tableView:viewForHeaderInSection:) with:^UIView*(NSObject *self, UITableView *table, NSInteger section){
 								if(weakListControllerRef.viewType == EViewType_TOP)
 								{
 									return nil;
@@ -366,7 +366,7 @@
 								return label;
 							}];
 	
-							[creator override:@selector(tableView:willDisplayCell:forRowAtIndexPath:) with:^(NSObject *self, UITableView *table, UITableViewCell *cell, NSIndexPath *indexPath){
+							[creator create:@selector(tableView:willDisplayCell:forRowAtIndexPath:) with:^(NSObject *self, UITableView *table, UITableViewCell *cell, NSIndexPath *indexPath){
 								__strong NewsListViewController *strongListControllerRef = weakListControllerRef;
 								guard(strongListControllerRef) else {return;}
 								if(weakListControllerRef.viewType == EViewType_TOP &&
@@ -395,7 +395,7 @@
 							}];
 							
 							
-							[creator override:@selector(tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:) with:^(NSObject *self, UITableView *table, NSIndexPath *indexPath){
+							[creator create:@selector(tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:) with:^(NSObject *self, UITableView *table, NSIndexPath *indexPath){
 								SPArray *array = self.spGet(kArticles);
 								ArticleItem *item = nil;
 								if(weakListControllerRef.viewType == EViewType_TOP)

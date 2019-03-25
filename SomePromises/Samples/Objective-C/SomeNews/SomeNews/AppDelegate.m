@@ -237,7 +237,7 @@
 										   bindLifetimeTo:self->_manager
 											   definition:^(SomePromiseObject* creator) {
 
-												[creator override:@selector(locationManager:didChangeAuthorizationStatus:) with:^void(NSObject *self, CLLocationManager *locationManager, CLAuthorizationStatus status) {
+												[creator create:@selector(locationManager:didChangeAuthorizationStatus:) with:^void(NSObject *self, CLLocationManager *locationManager, CLAuthorizationStatus status) {
 															if (status == kCLAuthorizationStatusRestricted ||
 																status == kCLAuthorizationStatusDenied) {
 																reject(nil);
@@ -247,7 +247,7 @@
 															}
 												}];
 												
-												[creator override:@selector(locationManager:didUpdateLocations:) with:^void(NSObject *self, CLLocationManager *locationManager, NSArray<CLLocation *> *locations) {
+												[creator create:@selector(locationManager:didUpdateLocations:) with:^void(NSObject *self, CLLocationManager *locationManager, NSArray<CLLocation *> *locations) {
 														if(locations == nil || !locations.count || isRejected()) {
 															return;
 														}

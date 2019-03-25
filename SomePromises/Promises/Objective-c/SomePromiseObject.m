@@ -130,7 +130,20 @@ IMP sp_superIMP(NSObject *instance, SEL selector)
 
 - (void) override:(SEL)selector with:(id _Nonnull)implementationBlock
 {
-	class_replaceMethodWithBlock(_dynamicClass, selector, implementationBlock);
+	if (class_respondsToSelector(_dynamicClass, selector)) {
+		class_replaceMethodWithBlock(_dynamicClass, selector, implementationBlock);
+	} else {
+		FATAL_ERROR(@"Override must override method from super class", @"Use create method");
+	}
+}
+
+- (void) create:(SEL)selector with:(id _Nonnull)implementationBlock
+{
+	if (!class_respondsToSelector(_dynamicClass, selector)) {
+		class_replaceMethodWithBlock(_dynamicClass, selector, implementationBlock);
+	} else {
+		FATAL_ERROR(@"Create must create method from super class", @"Use override method");
+	}
 }
 
 - (void) addDealloc:(void(^)(void))implementationBlock

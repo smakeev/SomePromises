@@ -190,7 +190,7 @@
 										   bindLifetimeTo:nil//sessionDelegateLifeAnchor
 											   definition:^(SomePromiseObject* creator) {
 												   @sp_strongify(service)
-												   [creator override:@selector(URLSession:didBecomeInvalidWithError:)
+												   [creator create:@selector(URLSession:didBecomeInvalidWithError:)
 																with:^(id sessionDelegate, NSURLSession *session, NSError *error){
 																	@sp_strongify(service)
 																	@synchronized(service)

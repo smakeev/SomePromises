@@ -13,6 +13,12 @@
 #import "ContainerableProtocolStrategy.h"
 
 #import "MenuViewController.h"
+#import "ActionButton.h"
+
+@protocol PopoverItemsProvider <NSObject>
+- (UIButton*) locationItem;
+- (UIButton*) localeItem;
+@end
 
 @interface ListsNewsContainerViewController (PopoverPresentationDelegate) <UIPopoverPresentationControllerDelegate>
 @end
@@ -36,7 +42,7 @@
 	
 	__weak IBOutlet UILabel *searchSring;
 	MenuViewController *_menuPresenter;
-	UIViewController *_locationPopoverController;
+	UIViewController<PopoverItemsProvider> *_locationPopoverController;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *flipButton;
@@ -253,15 +259,94 @@
 	}];
 }
 
+- (void) locationItemPressed:(id) sender {
+	[self.view.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+		[self->_locationPopoverController locationItem].alpha = 0;
+		[self->_locationPopoverController localeItem].alpha = 0;
+	}];
+}
+
+- (void) localeItemPressed:(id) sender {
+	[self.view.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+		[self->_locationPopoverController locationItem].alpha = 0;
+		[self->_locationPopoverController localeItem].alpha = 0;
+	}];
+}
+
 - (IBAction)locationPressed:(UIButton*)sender {
 	if (_findFieldActive) {
 		[self findPressed:nil];
 	}
 	if (!_locationPopoverController) {
-		_locationPopoverController = [UIViewController new];
+		__weak ListsNewsContainerViewController *weakController = self;
+		_locationPopoverController = [SomePromiseObject createObjectBasedOn:[UIViewController class]
+												protocols:@[@protocol(PopoverItemsProvider)]
+										   bindLifetimeTo:nil
+											   definition:^(SomePromiseObject* creator) {
+
+												__block UIButton *locationItemBtn = nil;
+												__block UIButton *localeItemBtn = nil;
+												
+												[creator create:@selector(locationItem) with:^UIButton*(UIViewController *self) {
+													return locationItemBtn;
+												}];
+
+												[creator create:@selector(localeItem) with:^UIButton*(UIViewController *self) {
+													return localeItemBtn;
+												}];
+
+												[creator override:@selector(viewDidAppear:) with:^void(UIViewController *self, BOOL animated) {
+													IMP superImp = sp_superIMP(self, @selector(viewDidAppear:));
+													void(* foo)(id, SEL, BOOL) = (void (*)(__strong id, SEL, BOOL))superImp;
+													foo(self, @selector(viewDidAppear:), animated);
+													
+													[locationItemBtn sizeToFit];
+													[localeItemBtn sizeToFit];
+													[UIView animateWithDuration:0.5 animations:^{
+														localeItemBtn.alpha = 1;
+														locationItemBtn.alpha = 1;
+													}];
+												}];
+
+											    [creator override:@selector(viewDidLoad) with:^void(UIViewController *self) {
+													sp_voidCallSuper(self, @selector(viewDidLoad));
+													
+													UIButton* (^buttonCreator)(NSString *text, NSString *image, SEL selector) = ^UIButton*(NSString *text, NSString *image, SEL selector){
+														ActionButton *button = [ActionButton buttonWithType:UIButtonTypeCustom];
+														[button initializeExplicitly];
+														button.clipsToBounds = YES;
+														self.view.clipsToBounds = NO;
+														[button setTitle:text forState:UIControlStateNormal];
+														UIImage *img = [UIImage imageNamed:image];
+														[button setImage:img forState:UIControlStateNormal];
+														[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+														[self.view addSubview:button];
+														button.translatesAutoresizingMaskIntoConstraints = NO;
+														[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-3-[button]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(button)]];
+
+														[button addTarget:weakController action:selector forControlEvents:UIControlEventTouchUpInside];
+														[button sizeToFit];
+														return button;
+													};
+													UIButton *buttonLocation = buttonCreator(@"Current Location", @"locationItem", @selector(locationItemPressed:));
+													UIButton *buttonLocale = buttonCreator(@"Current Locale", @"localeItem", @selector(localeItemPressed:));
+													UIView *separator = [[UIView alloc] init];
+													separator.backgroundColor = [UIColor lightGrayColor];
+													separator.translatesAutoresizingMaskIntoConstraints = NO;
+													[self.view addSubview:separator];
+													
+													[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[buttonLocation]-8-[separator(1)]-8-[buttonLocale(buttonLocation)]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(buttonLocation, buttonLocale, separator)]];
+													
+													[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-3-[separator]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(separator)]];
+													locationItemBtn = buttonLocation;
+													localeItemBtn = buttonLocale;
+													localeItemBtn.alpha = 0;
+													locationItemBtn.alpha = 0;
+												}];
+		}];
+		_locationPopoverController.preferredContentSize = CGSizeMake(200, 100);
 		_locationPopoverController.modalPresentationStyle = UIModalPresentationPopover;
 	}
-
 	_locationPopoverController.popoverPresentationController.sourceView = sender;
 	_locationPopoverController.popoverPresentationController.sourceRect = sender.bounds;
 	_locationPopoverController.popoverPresentationController.delegate = self;

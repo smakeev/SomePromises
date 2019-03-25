@@ -38,7 +38,7 @@ void sp_voidCallSuper(NSObject *instance, SEL selector);
 
 //The hardest variant
 //If you have to call a super method with parameters
-//In this case you will have t cast IMP yourself
+//In this case you will have to cast IMP yourself
 //ex: let's say we have a method initWithValue:string:
 //in super class
 //Than to override it and call the super we will do:
@@ -68,6 +68,7 @@ IMP sp_superIMP(NSObject *instance, SEL selector);
 // implementationBlock - is a block to change implementation.
 // return type (NSObject *self, parameters of the method)
 - (void) override:(SEL)selector with:(id _Nonnull)implementationBlock;
+- (void) create:(SEL)selector with:(id _Nonnull)implementationBlock;
 
 //add dealloc. block to be called on object destroy.
 //[creator addDealloc:^{
