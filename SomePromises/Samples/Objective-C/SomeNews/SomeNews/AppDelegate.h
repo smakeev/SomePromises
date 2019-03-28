@@ -24,6 +24,7 @@
 - (void) saveContext;
 - (void) startUpdate;
 - (void) startAddingPage;
+- (void) detectCountry;
 
 @end
 

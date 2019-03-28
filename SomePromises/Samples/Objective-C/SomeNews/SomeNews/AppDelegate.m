@@ -167,6 +167,83 @@
 	@sp_avoidend(self)
 }
 
+- (void) detectCountry {
+	_manager = [[CLLocationManager alloc] init];
+	_locationDetector = (SomePromise*)
+	[SomePromise promiseWithName:@"AskForLocationPromise"
+					   resolvers:^(FulfillBlock fulfill, RejectBlock reject, IsRejectedBlock isRejected, ProgressBlock progress) {
+						   self->_manager.delegate = [SomePromiseObject createObjectBasedOn:[NSObject class]
+																				  protocols:@[@protocol(CLLocationManagerDelegate)]
+																			 bindLifetimeTo:self->_manager
+																				 definition:^(SomePromiseObject* creator) {
+																					 
+																					 [creator create:@selector(locationManager:didChangeAuthorizationStatus:) with:^void(NSObject *self, CLLocationManager *locationManager, CLAuthorizationStatus status) {
+																						 if (status == kCLAuthorizationStatusRestricted ||
+																							 status == kCLAuthorizationStatusDenied) {
+																							 reject(nil);
+																						 } else if ( status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+																									status == kCLAuthorizationStatusAuthorizedAlways) {
+																							 [locationManager startUpdatingLocation];
+																						 }
+																					 }];
+																					 
+																					 [creator create:@selector(locationManager:didUpdateLocations:) with:^void(NSObject *self, CLLocationManager *locationManager, NSArray<CLLocation *> *locations) {
+																						 if(locations == nil || !locations.count || isRejected()) {
+																							 return;
+																						 }
+																						 CLLocation *current = locations[0];;
+																						 CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+																						 [geocoder reverseGeocodeLocation:current completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+																							 if (placemarks == nil) {
+																								 reject(rejectionErrorWithText(@"Geocode error", ESomePromiseError_ConditionReturnsFalse));
+																								 return;
+																							 }
+																							 CLPlacemark *currentLocPlacement = placemarks[0];
+																							 NSString *result = currentLocPlacement.ISOcountryCode;
+																							 if (result) {
+																								 fulfill(result);
+																							 } else {
+																								 reject(rejectionErrorWithText(@"Geocode error", ESomePromiseError_ConditionReturnsFalse));
+																							 }
+																						 }];
+																					 }];
+																				 }];
+						   
+						   CLAuthorizationStatus status = CLLocationManager.authorizationStatus;
+						   switch (status) {
+								   
+							   case kCLAuthorizationStatusNotDetermined:
+								   [self->_manager requestWhenInUseAuthorization];
+								   break;
+							   case kCLAuthorizationStatusRestricted:
+							   case kCLAuthorizationStatusDenied:
+								   reject(nil);
+								   break;
+							   case kCLAuthorizationStatusAuthorizedAlways:
+							   case kCLAuthorizationStatusAuthorizedWhenInUse:
+								   [self->_manager startUpdatingLocation];
+								   break;
+						   }
+					   } class:[NSString class]].onReject(^(NSError* error) {
+						   //show alert
+						   guard (!error) else {return;} //if there is error, than error is in geocode or rejected by user action. Don't show the alert though
+						   dispatch_async(dispatch_get_main_queue(), ^{
+							   UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Location Service Disabled" message:@"Enable Location Services in Settings to allow the app to determine your current location." preferredStyle:UIAlertControllerStyleAlert];
+							   UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+							   [controller addAction:action];
+							   [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+						   });
+					   }).onSuccess(^(NSString *countryCode) {
+						   dispatch_async(dispatch_get_main_queue(), ^{
+							   [Services.user setCountry:countryCode];
+							   [self startUpdate];
+						   });
+					   }).always(^(id result, NSError *error) {
+						   dispatch_async(dispatch_get_main_queue(), ^{
+							   [self->_manager stopUpdatingLocation];
+						   });
+					   });
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -228,81 +305,7 @@
 	if (_modelMenu.startSearch == ESearchOnStartType_Last) {
 		[Services.user restoreFromDefaults];
 	} else if (_modelMenu.startSearch == ESearchOnStartType_Location) {
-			_manager = [[CLLocationManager alloc] init];
-			_locationDetector = (SomePromise*)
-			[SomePromise promiseWithName:@"AskForLocationPromise"
-							   resolvers:^(FulfillBlock fulfill, RejectBlock reject, IsRejectedBlock isRejected, ProgressBlock progress) {
-				self->_manager.delegate = [SomePromiseObject createObjectBasedOn:[NSObject class]
-												protocols:@[@protocol(CLLocationManagerDelegate)]
-										   bindLifetimeTo:self->_manager
-											   definition:^(SomePromiseObject* creator) {
-
-												[creator create:@selector(locationManager:didChangeAuthorizationStatus:) with:^void(NSObject *self, CLLocationManager *locationManager, CLAuthorizationStatus status) {
-															if (status == kCLAuthorizationStatusRestricted ||
-																status == kCLAuthorizationStatusDenied) {
-																reject(nil);
-															} else if ( status == kCLAuthorizationStatusAuthorizedWhenInUse ||
-																		status == kCLAuthorizationStatusAuthorizedAlways) {
-																[locationManager startUpdatingLocation];
-															}
-												}];
-												
-												[creator create:@selector(locationManager:didUpdateLocations:) with:^void(NSObject *self, CLLocationManager *locationManager, NSArray<CLLocation *> *locations) {
-														if(locations == nil || !locations.count || isRejected()) {
-															return;
-														}
-														CLLocation *current = locations[0];;
-														CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-														[geocoder reverseGeocodeLocation:current completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-																if (placemarks == nil) {
-																	reject(rejectionErrorWithText(@"Geocode error", ESomePromiseError_ConditionReturnsFalse));
-																	return;
-																}
-																CLPlacemark *currentLocPlacement = placemarks[0];
-																NSString *result = currentLocPlacement.ISOcountryCode;
-																if (result) {
-																	fulfill(result);
-																} else {
-																	reject(rejectionErrorWithText(@"Geocode error", ESomePromiseError_ConditionReturnsFalse));
-																}
-														}];
-												}];
-				}];
-				
-				CLAuthorizationStatus status = CLLocationManager.authorizationStatus;
-				switch (status) {
-				
-					case kCLAuthorizationStatusNotDetermined:
-							[self->_manager requestWhenInUseAuthorization];
-						break;
-					case kCLAuthorizationStatusRestricted:
-					case kCLAuthorizationStatusDenied:
-						reject(nil);
-						break;
-					case kCLAuthorizationStatusAuthorizedAlways:
-					case kCLAuthorizationStatusAuthorizedWhenInUse:
-						[self->_manager startUpdatingLocation];
-						break;
-				}
-			} class:[NSString class]].onReject(^(NSError* error) {
-				//show alert
-				guard (!error) else {return;} //if there is error, than error is in geocode or rejected by user action. Don't show the alert though
-				 dispatch_async(dispatch_get_main_queue(), ^{
-					UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Location Service Disabled" message:@"Enable Location Services in Settings to allow the app to determine your current location." preferredStyle:UIAlertControllerStyleAlert];
-					UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-					[controller addAction:action];
-					[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
-				});
-			}).onSuccess(^(NSString *countryCode) {
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[Services.user setCountry:countryCode];
-					[self startUpdate];
-				});
-			}).always(^(id result, NSError *error) {
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[self->_manager stopUpdatingLocation];
-				});
-			});
+			[self detectCountry];
 	}
 	[self startUpdate];
 	return YES;

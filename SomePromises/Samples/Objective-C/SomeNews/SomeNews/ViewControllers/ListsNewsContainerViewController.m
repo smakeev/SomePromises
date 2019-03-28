@@ -264,6 +264,7 @@
 		[self->_locationPopoverController locationItem].alpha = 0;
 		[self->_locationPopoverController localeItem].alpha = 0;
 	}];
+	[((AppDelegate*)([UIApplication sharedApplication].delegate)) detectCountry];
 }
 
 - (void) localeItemPressed:(id) sender {
@@ -271,6 +272,10 @@
 		[self->_locationPopoverController locationItem].alpha = 0;
 		[self->_locationPopoverController localeItem].alpha = 0;
 	}];
+	
+	NSString *language = NSBundle.mainBundle.preferredLocalizations.firstObject;
+	[Services.user setLanguage:language];
+	[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];
 }
 
 - (IBAction)locationPressed:(UIButton*)sender {
@@ -457,6 +462,11 @@
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection
 {
 	return UIModalPresentationNone;
+}
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+		[self->_locationPopoverController locationItem].alpha = 0;
+		[self->_locationPopoverController localeItem].alpha = 0;
 }
 
 @end
