@@ -18,6 +18,14 @@
 {
 	if(!self.current)
 		return NO;
+		
+	NSString *source = [Services.user getSource];
+	if(source == nil && self.current.source != nil)
+		return NO;
+	if(source != nil && self.current.source == nil)
+		return NO;
+	if(source && ![source isEqualToString:self.current.source])
+		return NO;
 	NSString *country = [Services.user getCountry];
 	if(country == nil && self.current.country != nil)
 		return NO;

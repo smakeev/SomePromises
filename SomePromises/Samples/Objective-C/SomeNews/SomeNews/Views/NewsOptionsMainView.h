@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NewsOptionsMainView : UIView
 
 - (void) changeInternalState;
+- (BOOL) isOpened;
 
 @end
 

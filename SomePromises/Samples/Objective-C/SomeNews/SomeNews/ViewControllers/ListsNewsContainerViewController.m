@@ -273,8 +273,11 @@
 		[self->_locationPopoverController localeItem].alpha = 0;
 	}];
 	
-	NSString *language = NSBundle.mainBundle.preferredLocalizations.firstObject;
-	[Services.user setLanguage:language];
+	NSString *language = [NSLocale preferredLanguages].firstObject;
+	NSDictionary *languageDic = [NSLocale componentsFromLocaleIdentifier:language];
+	NSString *languageCode = [languageDic objectForKey:@"kCFLocaleLanguageCodeKey"];
+
+	[Services.user setLanguage:languageCode];
 	[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];
 }
 

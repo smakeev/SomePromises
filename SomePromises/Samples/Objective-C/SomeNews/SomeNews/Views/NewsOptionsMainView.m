@@ -14,6 +14,7 @@
 @interface NewsOptionsMainView ()
 {
 	BOOL shouldHide;
+	BOOL opened;
 }
 @property (weak, nonatomic) IBOutlet UIView *optionsPresenterView;
 @property (weak, nonatomic) IBOutlet ActionButton *optionsButton;
@@ -49,10 +50,16 @@
 	
 	self.optionsPresenterView.transform = CGAffineTransformMakeScale(0, 0);
 	shouldHide = NO;
+	opened = NO;
+}
+
+- (BOOL) isOpened {
+	return opened;
 }
 
 - (void) changeInternalState
 {
+	opened = !opened;
  	[UIView animateWithDuration:0.5 animations:^{
 		if(self->shouldHide)
 		{

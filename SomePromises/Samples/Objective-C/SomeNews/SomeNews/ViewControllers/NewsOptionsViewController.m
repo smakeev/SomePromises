@@ -31,20 +31,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	SPDataStream *stream = @sp_observeSwitch(_useSourceSwitch).map(^(NSNumber *result){
+
+	@sp_uibind(_categoryButton, enabled) = @sp_observeSwitch(_useSourceSwitch).map(^(NSNumber *result){
 		return @(![result boolValue]);
 	});
-	@sp_uibind(_countryButton, enabled) = stream;
-	@sp_uibind(_languageButton, enabled) = stream;
-	@sp_uibind(_categoryButton, enabled) = stream;
 	
 	@sp_uibind(_sourceButton, enabled) = @sp_observeSwitch(_useSourceSwitch);
+	
+	@sp_startUI(sp_action(_useSourceSwitch, ^(NSNumber *sourceBool) {
+		if (![sourceBool boolValue]) {
+			[Services.user setSource:nil  withName:nil];
+		} else {
+			[Services.user restoreSourceIfPossible];
+		}
+	})) = @sp_observeSwitch(_useSourceSwitch);
 }
 
 - (IBAction)buttonPressed:(id)sender
 {
 	[_useSourceSwitch setOn:([Services.user getSource] ? YES : NO)];
 	[((NewsOptionsMainView*)self.view) changeInternalState];
+	if (![((NewsOptionsMainView*)self.view) isOpened]) {
+		[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];
+	}
+	
 }
 
 - (IBAction)aboutButtonPressed:(id)sender {

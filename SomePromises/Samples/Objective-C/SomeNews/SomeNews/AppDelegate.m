@@ -112,6 +112,7 @@
 		_cashedRequestsInfo.current.country = [Services.user getCountry];
 		_cashedRequestsInfo.current.category = [Services.user getCategory];
 		_cashedRequestsInfo.current.querry = [Services.user getQuery];
+		_cashedRequestsInfo.current.source = [Services.user getSource];
 	}
 	else
 	{
@@ -135,6 +136,7 @@
 			_cashedRequestsInfo.current.country = [Services.user getCountry];
 			_cashedRequestsInfo.current.category = [Services.user getCategory];
 			_cashedRequestsInfo.current.querry = [Services.user getQuery];
+			_cashedRequestsInfo.current.source = [Services.user getSource];
 		}
 	}
 	[_services.images clear];

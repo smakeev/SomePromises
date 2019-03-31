@@ -9,9 +9,11 @@
 #import "UserService.h"
 #import "ServicesProvider.h"
 
-#define LANGUAGEKEY @"Language"
-#define COUNTRYKEY @"Country"
-#define CATEGORYKEY @"Category"
+#define LANGUAGEKEY   @"Language"
+#define COUNTRYKEY    @"Country"
+#define CATEGORYKEY   @"Category"
+#define SOURCEKEY     @"Source"
+#define SOURCENAMEKEY @"SourceName"
 
 @interface UserService ()
 {
@@ -19,6 +21,10 @@
 	NSString *_country;
 	NSString *_language;
 	NSString *_category;
+	NSString *_sourceName;
+	
+	NSString *_lastSource;
+	NSString *_lastSourceName;
 	
 	SomeClassBox<NSString*> *_state;
 }
@@ -43,15 +49,20 @@
 
 - (void) updateState
 {
-
 	NSString *where = _country ? : _language ? : @"Any";
 	NSString *category = _category ? : @"Any";
 
-	_state.value = [NSString stringWithFormat:@"Where:%@  Cat:%@  What:%@", where, category, _querry ? : @""];
+	if (_source) {
+		_state.value = [NSString stringWithFormat:@"Where:%@, What:%@", _sourceName, _querry ? : @""];
+	} else {
+		_state.value = [NSString stringWithFormat:@"Where:%@  Cat:%@  What:%@", where, category, _querry ? : @""];
+	}
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:_country forKey:COUNTRYKEY];
 	[defaults setObject:_language forKey:LANGUAGEKEY];
-	[defaults setObject:category forKey:CATEGORYKEY];
+	[defaults setObject:_category forKey:CATEGORYKEY];
+	[defaults setObject:_source forKey:SOURCEKEY];
+	[defaults setObject:_sourceName forKey:SOURCENAMEKEY];
 	[defaults synchronize];
 	
 	[_delegate onUserHasChangedUserData];
@@ -59,14 +70,19 @@
 
 - (void) restoreFromDefaults {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString *language = [defaults objectForKey:LANGUAGEKEY];
-	NSString *country = [defaults objectForKey:COUNTRYKEY];
-	NSString *category = [defaults objectForKey:CATEGORYKEY];
+	NSString *language   = [defaults objectForKey:LANGUAGEKEY];
+	NSString *country    = [defaults objectForKey:COUNTRYKEY];
+	NSString *category   = [defaults objectForKey:CATEGORYKEY];
+	NSString *source     = [defaults objectForKey:SOURCEKEY];
+	NSString *sourcename = [defaults objectForKey:SOURCENAMEKEY];
 	if (language) {
 	   [self setLanguage:language];
 	} else {
 		[self setCountry:country];
 		[self setCategory:category];
+	}
+	if (source) {
+		[self setSource:source withName:sourcename];
 	}
 }
 
@@ -83,8 +99,12 @@
 	}
 	else
 	{
-		_language = nil; //API does not pay attention on langauge if it has country. So just place it to all to reflect in UI.
-		_country = country;
+		_language       = nil; //API does not pay attention on langauge if it has country. So just place it to all to reflect in UI.
+		_source         = nil;
+		_sourceName     = nil;
+		_lastSource     = nil;
+		_lastSourceName = nil;
+		_country        = country;
 	}
 	[self updateState];
 }
@@ -102,9 +122,13 @@
 	}
 	else
 	{
-		_country = nil; //API does not pay attention on langauge if it has country.
-		_category = nil;
-		_language = language;
+		_country        = nil; //API does not pay attention on langauge if it has country.
+		_category       = nil;
+		_source         = nil;
+		_sourceName     = nil;
+		_lastSource     = nil;
+		_lastSourceName = nil;
+		_language       = language;
 	}
 	[self updateState];
 }
@@ -130,7 +154,26 @@
 
 - (NSString*) getSource
 {
-	return nil;
+	return _source;
+}
+
+- (void) setSource:(NSString*)source  withName:(NSString*) name{
+	if ([source isEqualToString:@"N/A"] || source == nil) {
+		_source     = nil;
+		_sourceName = nil;
+	} else {
+		_source     = [source copy];
+		_sourceName = [name copy];
+		_lastSource = _source;
+		_lastSourceName = _sourceName;
+	}
+	[self updateState];
+}
+
+- (void) restoreSourceIfPossible {
+	if (_lastSource) {
+		[self setSource:_lastSource withName:_lastSourceName];
+	}
 }
 
 - (NSString*) pageSize

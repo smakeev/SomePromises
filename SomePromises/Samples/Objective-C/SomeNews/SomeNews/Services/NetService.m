@@ -18,37 +18,6 @@
 @end
 
 @implementation NetService
-//
-//- (NSData *)sendSynchronousRequest:(NSURLSession *)session
-//							   url:(NSURL*)url
-//    			 returningResponse:(__autoreleasing NSURLResponse **)responsePtr
-//    						 error:(__autoreleasing NSError **)errorPtr
-//{
-//    dispatch_semaphore_t    sem;
-//    __block NSData *        result;
-//
-//    result = nil;
-//
-//    sem = dispatch_semaphore_create(0);
-//
-//    [[session dataTaskWithURL:url
-//        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        if (errorPtr != NULL) {
-//            *errorPtr = error;
-//        }
-//        if (responsePtr != NULL) {
-//            *responsePtr = response;
-//        }
-//        if (error == nil) {
-//            result = data;
-//        }
-//        dispatch_semaphore_signal(sem);
-//    }] resume];
-//
-//    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-//
-//   return result;
-//}
 
 - (instancetype) init
 {
@@ -164,17 +133,26 @@
 		NSURL *url = [[NSURL URLWithString:mainURL] URLByAppendingPathComponent:@"top-headlines"];
 		NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
 		urlComponents.scheme = @"https";
-		NSURLQueryItem *countryURLQueryItem = [NSURLQueryItem queryItemWithName:@"country" value:[service->_owner.user getCountry]];
-		NSURLQueryItem *languageURLQueryItem = [NSURLQueryItem queryItemWithName:@"language" value:[service->_owner.user getLanguage]];
-		NSURLQueryItem *categoryURLQueryItem =  [NSURLQueryItem queryItemWithName:@"category" value:[service->_owner.user getCategory]];
-		NSURLQueryItem *queryURLQueryItem = [NSURLQueryItem queryItemWithName:@"q" value:service->_owner.user.querry];
-		NSURLQueryItem *pageSizeURLQueryItem = [NSURLQueryItem queryItemWithName:@"pageSize" value:[service->_owner.user pageSize]];
-		/*NSURLQueryItem *apiKeyURLQueryItem = [NSURLQueryItem queryItemWithName:@"apiKey" value:apiKey];*/
-		NSURLQueryItem *pageNumberURLQueryItem = [NSURLQueryItem queryItemWithName:@"page" value: page ? [NSString stringWithFormat: @"%ld", (long)page] : nil];
 		
-		urlComponents.queryItems = 	[SPArray fromArray:@[countryURLQueryItem, languageURLQueryItem, categoryURLQueryItem, queryURLQueryItem, pageNumberURLQueryItem, pageSizeURLQueryItem/*, apiKeyURLQueryItem*/]].filter(^(NSURLQueryItem *item){
+		NSString *source = [service->_owner.user getSource];
+		if (source && [source length]) {
+			NSURLQueryItem *sourceItem = [NSURLQueryItem queryItemWithName:@"sources" value:source];
+			NSURLQueryItem *queryURLQueryItem = [NSURLQueryItem queryItemWithName:@"q" value:service->_owner.user.querry];
+			urlComponents.queryItems = [SPArray fromArray:@[sourceItem, queryURLQueryItem]].filter(^(NSURLQueryItem *item) {
+				return (BOOL)(item.value != nil);
+			}).toArray;
+		} else {
+			NSURLQueryItem *countryURLQueryItem = [NSURLQueryItem queryItemWithName:@"country" value:[service->_owner.user getCountry]];
+			NSURLQueryItem *languageURLQueryItem = [NSURLQueryItem queryItemWithName:@"language" value:[service->_owner.user getLanguage]];
+			NSURLQueryItem *categoryURLQueryItem =  [NSURLQueryItem queryItemWithName:@"category" value:[service->_owner.user getCategory]];
+			NSURLQueryItem *queryURLQueryItem = [NSURLQueryItem queryItemWithName:@"q" value:service->_owner.user.querry];
+			NSURLQueryItem *pageSizeURLQueryItem = [NSURLQueryItem queryItemWithName:@"pageSize" value:[service->_owner.user pageSize]];
+			NSURLQueryItem *pageNumberURLQueryItem = [NSURLQueryItem queryItemWithName:@"page" value: page ? [NSString stringWithFormat: @"%ld", (long)page] : nil];
+		
+			urlComponents.queryItems = 	[SPArray fromArray:@[countryURLQueryItem, languageURLQueryItem, categoryURLQueryItem, queryURLQueryItem, pageNumberURLQueryItem, pageSizeURLQueryItem]].filter(^(NSURLQueryItem *item){
 			return (BOOL)(item.value != nil);
-		}).toArray;
+			}).toArray;
+		}
 		
 		NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
 		[sessionConfiguration setHTTPAdditionalHeaders:@{@"Accept" : @"application/json", @"X-Api-Key" : apiKey}];

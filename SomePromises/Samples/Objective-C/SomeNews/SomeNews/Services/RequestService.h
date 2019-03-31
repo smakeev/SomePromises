@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *language;
 @property (nonatomic) NSString *category;
 @property (nonatomic) NSString *querry;
+@property (nonatomic) NSString *source;
 
 @end
 
