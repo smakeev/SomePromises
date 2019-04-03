@@ -407,9 +407,13 @@
 									item = ((SPArray*)array[indexPath.section].value)[indexPath.row].value;
 								}
 								
-								UIContextualAction *getArticleUrl = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"Copy URL" handler:^(UIContextualAction *action,  UIView *sourceView, void (^ completionHandler)(BOOL)) {
-									UIPasteboard *pb = [UIPasteboard generalPasteboard];
-									[pb setString:item.url];
+								UIContextualAction *getArticleUrl = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"Share" handler:^(UIContextualAction *action,  UIView *sourceView, void (^ completionHandler)(BOOL)) {
+									__strong NewsListViewController *strongListControllerRef = weakListControllerRef;
+									guard(strongListControllerRef) else {return;}
+									NSArray* sharedObjects=[NSArray arrayWithObjects:item.url,  nil];
+									UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
+									activityViewController.popoverPresentationController.sourceView = strongListControllerRef.view;
+									[strongListControllerRef presentViewController:activityViewController animated:YES completion:nil];
 									completionHandler(YES);
 								}];
 								
@@ -418,7 +422,7 @@
 								
 								UIContextualAction *getImageUrl = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"Copy Image URL" handler:^(UIContextualAction *action,  UIView *sourceView, void (^ completionHandler)(BOOL)) {
 									UIPasteboard *pb = [UIPasteboard generalPasteboard];
-									[pb setString:item.url];
+									[pb setString:item.imageUrl];
 									completionHandler(YES);
 								}];
 								getImageUrl.backgroundColor = [UIColor colorNamed:@"PulsingLayerColor"];
