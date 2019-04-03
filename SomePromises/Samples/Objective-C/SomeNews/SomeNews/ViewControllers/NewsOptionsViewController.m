@@ -19,6 +19,8 @@
 	__weak IBOutlet UISwitch *_useSourceSwitch;
 	__weak IBOutlet UISegmentedControl *_modeSegmentControl;
 	__weak IBOutlet UIButton *_aboutButton;
+	
+	BOOL _useSources;
 }
 
 @property (nonatomic, weak) UISwitch *useSourceSwitch;
@@ -38,18 +40,41 @@
 	
 	@sp_uibind(_sourceButton, enabled) = @sp_observeSwitch(_useSourceSwitch);
 	
+	@sp_avoidblockretain(self);
 	@sp_startUI(sp_action(_useSourceSwitch, ^(NSNumber *sourceBool) {
+		@sp_strongify(self)
+		guard(self) else {return;}
+		if(self->_useSources == [sourceBool boolValue]) { return; }
+		self->_useSources = [sourceBool boolValue];
 		if (![sourceBool boolValue]) {
 			[Services.user setSource:nil  withName:nil];
 		} else {
-			[Services.user restoreSourceIfPossible];
+			if (![Services.user restoreSourceIfPossible]) {
+				[self->_sourceButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+			}
 		}
 	})) = @sp_observeSwitch(_useSourceSwitch);
+	@sp_avoidend(self)
+	
+	//on each user change check if there is a source
+	@sp_avoidblockretain(self);
+	Services.user.state.bind(self, ^(NSString *userState) {
+		NSLog(@"!! source now: %@", [Services.user source]);
+		@sp_strongify(self)
+		guard (self) else {return;}
+		if ([Services.user source] == nil &&
+			self->_useSourceSwitch.isOn) {
+			[self->_useSourceSwitch setOn:NO];
+		}
+	});
+	@sp_avoidend(self)
+
 }
 
 - (IBAction)buttonPressed:(id)sender
 {
-	[_useSourceSwitch setOn:([Services.user getSource] ? YES : NO)];
+	_useSources = _useSourceSwitch.isOn;
+	_categoryButton.enabled = !_useSourceSwitch.isOn;
 	[((NewsOptionsMainView*)self.view) changeInternalState];
 	if (![((NewsOptionsMainView*)self.view) isOpened]) {
 		[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];

@@ -26,8 +26,9 @@
 	for(UIViewController *controller in self.childViewControllers)
 	{
 			if([controller isKindOfClass:[SettingBaseViewController class]])
-			{				SettingBaseViewController *base = (SettingBaseViewController*)controller;
-				base.pickerView.delegate = self;
+			{
+				SettingBaseViewController *base = (SettingBaseViewController*)controller;
+				base.pickerView.delegate   = self;
 				base.pickerView.dataSource = self;
 				[base.pickerView.widthAnchor	constraintEqualToAnchor:base.pickerView.superview.heightAnchor multiplier:.5].active = YES;
 				[base.pickerView.heightAnchor	constraintEqualToAnchor:base.pickerView.superview.widthAnchor multiplier:1.0].active = YES;
@@ -57,6 +58,7 @@
 					[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];
 				})) = @sp_observeControlOnce(base.doneButton, UIControlEventTouchUpInside);
 				@sp_avoidend(self)
+				break;
 			}
 	}
 }

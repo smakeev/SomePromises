@@ -29,7 +29,7 @@
 - (NSString*) pageSize;
 - (NSString*) getQuery;
 - (NSString*) getMode;
-- (void) restoreSourceIfPossible;
+- (BOOL) restoreSourceIfPossible;
 
 @end
 typedef NSObject<UserServiceProviderProtocol> UserProvider;

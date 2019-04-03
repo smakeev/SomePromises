@@ -93,6 +93,7 @@
 
 - (void) setCountry:(NSString *)country
 {
+	if (_country && [_country isEqualToString:country]) {return;}
 	if([country isEqualToString:@"all"])
 	{
 		_country = nil;
@@ -116,6 +117,7 @@
 
 - (void) setLanguage:(NSString*)language
 {
+	if (_language && [_language isEqualToString:language]) {return;}
 	if([language isEqualToString:@"all"])
 	{
 		_language = nil;
@@ -170,9 +172,12 @@
 	[self updateState];
 }
 
-- (void) restoreSourceIfPossible {
+- (BOOL) restoreSourceIfPossible {
 	if (_lastSource) {
 		[self setSource:_lastSource withName:_lastSourceName];
+		return YES;
+	} else {
+		return NO;
 	}
 }
 
