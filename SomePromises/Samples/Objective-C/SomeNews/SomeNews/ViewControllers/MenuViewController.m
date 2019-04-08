@@ -136,21 +136,30 @@
 
 - (void) showMenu
 {
+	self.menuShown = YES;
 	[self->_menuView makeVisible:YES];
 	[UIView animateWithDuration:0.5 animations:^{
 		self.menuShownPercent = 100;
 	} completion:^(BOOL finished) {
-		self.menuShown = YES;
+		if (finished) {
+			if (self.menuShown == YES) {
+				[self->_menuView makeVisible:YES];
+			}
+		}
 	}];
 }
 
 - (void) hideMenu
 {
+	self.menuShown = NO;
 	[UIView animateWithDuration:0.5 animations:^{
 		self.menuShownPercent = 0;
 	}  completion:^(BOOL finished) {
-		self.menuShown = NO;
-		[self->_menuView makeVisible:NO];
+		if (finished) {
+			if (self.menuShown == NO) {
+				[self->_menuView makeVisible:NO];
+			}
+		}
 	}];
 }
 
