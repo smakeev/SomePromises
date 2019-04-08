@@ -51,6 +51,11 @@
 	[super touchesBegan:touches withEvent:event];
 }
 
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+	self.transform = CGAffineTransformIdentity;
+	[super touchesCancelled:touches withEvent:event];
+}
+
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
 	[UIView animateWithDuration:0.5
