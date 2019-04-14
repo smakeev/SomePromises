@@ -20,8 +20,14 @@
 
 	__weak IBOutlet NSLayoutConstraint *_menuSpaceWidth;
 	__weak IBOutlet UISegmentedControl *_startFromSegmentedControl;
+	__weak IBOutlet UISegmentedControl *_onCellSegmentedController;
+	__weak IBOutlet UISwitch *_autoHideSwitch;
 	
 	__weak MenuModel *_modelMenu;
+	
+	__weak IBOutlet UILabel *_onLaunchDescription;
+	__weak IBOutlet UILabel *_onClickDescription;
+	
 }
 
 @property (nonatomic) BOOL menuShown;
@@ -40,7 +46,7 @@
 	_background.alpha = value / 2.0f;
 	if(value > 0)
 	{
-		_menuSpaceWidth.constant = _background.frame.size.width -menuShownPercent * _background.frame.size.width / 100;
+		_menuSpaceWidth.constant = _background.frame.size.width - menuShownPercent * _background.frame.size.width / 100;
 	}
 	else
 	{
@@ -72,6 +78,8 @@
 	
 	_modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
 	_startFromSegmentedControl.selectedSegmentIndex = _modelMenu.startSearch;
+	_onCellSegmentedController.selectedSegmentIndex = _modelMenu.onCellClicked;
+	[_autoHideSwitch setOn:_modelMenu.autoHideSettings];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -165,6 +173,16 @@
 
 - (IBAction)startSearchChanged:(UISegmentedControl*)sender {
 	_modelMenu.startSearch = sender.selectedSegmentIndex;
+	_onLaunchDescription.text = [_modelMenu getOnLAunchText: sender.selectedSegmentIndex];
+}
+
+- (IBAction)onCellClickedChanged:(UISegmentedControl*)sender {
+	_modelMenu.onCellClicked = sender.selectedSegmentIndex;
+	_onClickDescription.text = [_modelMenu getOnCellClickedText:sender.selectedSegmentIndex];
+}
+
+- (IBAction)autoHideChanged:(UISwitch*)sender {
+	_modelMenu.autoHideSettings = sender.isOn;
 }
 
 @end

@@ -69,6 +69,9 @@
                                                             <segment title="Extend"/>
                                                             <segment title="Nothing"/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="onCellClickedChanged:" destination="kcL-Su-GfA" eventType="valueChanged" id="jag-g2-zVC"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When click on cell an appropriate news will be shown in App." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ED0-iT-JXN">
                                                         <rect key="frame" x="0.0" y="265" width="462.5" height="20.5"/>
@@ -81,6 +84,9 @@
                                                         <subviews>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EgI-4A-ZG0">
                                                                 <rect key="frame" x="646" y="34.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="autoHideChanged:" destination="kcL-Su-GfA" eventType="valueChanged" id="GhW-UL-wYa"/>
+                                                                </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Auto hide settings button when last cells under" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="dTw-I7-MUB">
                                                                 <rect key="frame" x="8" y="40" width="358.5" height="20.5"/>
@@ -162,11 +168,15 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="_autoHideSwitch" destination="EgI-4A-ZG0" id="tmJ-X3-fpl"/>
                         <outlet property="_background" destination="XpX-x1-LMV" id="mib-HK-iHJ"/>
                         <outlet property="_menuSpaceView" destination="tFE-e7-dEc" id="djR-hD-Kbl"/>
                         <outlet property="_menuSpaceWidth" destination="b6A-ty-UHd" id="0Js-Fz-Bkr"/>
                         <outlet property="_menuTouchView" destination="Bqk-da-zWB" id="t1b-tn-cAj"/>
                         <outlet property="_menuView" destination="PRI-Mx-Kwb" id="og6-OY-Hd4"/>
+                        <outlet property="_onCellSegmentedController" destination="ats-J2-H5R" id="9T4-Lv-Lbt"/>
+                        <outlet property="_onClickDescription" destination="ED0-iT-JXN" id="0ih-Cp-dGk"/>
+                        <outlet property="_onLaunchDescription" destination="ORh-qp-0SC" id="UhE-EW-E6t"/>
                         <outlet property="_startFromSegmentedControl" destination="fBc-q3-UJ0" id="Hu3-24-C2R"/>
                         <outlet property="menuView" destination="PRI-Mx-Kwb" id="KnM-L9-eG7"/>
                     </connections>
