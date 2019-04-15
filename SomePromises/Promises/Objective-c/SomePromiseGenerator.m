@@ -53,15 +53,18 @@
 @interface SPGenerator () <SPGeneratorYielder>
 {
 	NSCondition* _condition;
-	BOOL _yieldConditonReady;
+	//BOOL _yieldConditonReady;
 	NSCondition* _returnCondition;
-	BOOL _returnConditionReady;
+	//BOOL _returnConditionReady;
 	dispatch_queue_t _queue;
 	__nullable id _lastResult;
 	BOOL _done;
 	SPGeneratorResultProvider *_lastResultProvider;
 	
 }
+
+@property (atomic) BOOL returnConditionReady;
+@property (atomic) BOOL yieldConditonReady;
 @property (nonatomic, copy) NSArray *params;
 @property (nonatomic, copy) GeneratorBlock generatorBlock;
 @property (atomic) id lastResult;
