@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, ArticlesViewType)
 	EViewType_BYSOURCE = 1,
 };
 
-
 //helpers
 SomePromise* getStarterPromise(void);
 NSObject<ServicesProviderProtocol>* getServices(void);
@@ -52,6 +51,8 @@ extern NSString * const readyToGetNewPage;
 extern NSString * const optionsPressed;
 extern NSString * const sizeChangingAsked;
 extern NSString * const mainScreenChangedSignal;
+extern NSString * const hideOptions;
+extern NSString * const showOptions;
 
 //settings data base
 NSArray *getPossibleCategories(void);

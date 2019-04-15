@@ -16,6 +16,7 @@
 #import "ContainerableProtocolStrategy.h"
 #import "AppDelegate.h"
 #import "UIImageViewWithDownloader.h"
+#import "MenuModel.h"
 
 #import "ShimmerAnimatedLabel.h"
 
@@ -366,6 +367,18 @@
 								return label;
 							}];
 	
+							[creator create:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:) with:^(NSObject *self, UITableView *table, UITableViewCell *cell, NSIndexPath *indexPath){
+								MenuModel *modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
+								SPArray *array = self.spGet(kArticles);
+								if (modelMenu.autoHideSettings && indexPath.row == array.count - 1) {
+									SomePromiseSignal *showSettings = [[SomePromiseSignal alloc] initWithName:showOptions tag:0 message:nil anythingElse:nil];
+									NSMutableSet *receivers = [NSMutableSet new];
+									[weakListControllerRef getAllAboveContainersForController:weakListControllerRef set:receivers];
+									[receivers removeObject:self]; //don't send to ourself
+									[weakListControllerRef sendSignal:showSettings toObject:receivers.allObjects];
+								}
+							}];
+
 							[creator create:@selector(tableView:willDisplayCell:forRowAtIndexPath:) with:^(NSObject *self, UITableView *table, UITableViewCell *cell, NSIndexPath *indexPath){
 								__strong NewsListViewController *strongListControllerRef = weakListControllerRef;
 								guard(strongListControllerRef) else {return;}
@@ -390,6 +403,15 @@
 										[weakListControllerRef getAllAboveContainersForController:weakListControllerRef set:receivers];
 										[receivers removeObject:self]; //don't send to ourself
 										[weakListControllerRef sendSignal:signalAddNewPageIfExists toObject:receivers.allObjects];
+									}
+									
+									MenuModel *modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
+									if (modelMenu.autoHideSettings && indexPath.row == array.count - 1 && indexPath.row > 5) {
+										SomePromiseSignal *hideSettings = [[SomePromiseSignal alloc] initWithName:hideOptions tag:0 message:nil anythingElse:nil];
+										NSMutableSet *receivers = [NSMutableSet new];
+										[weakListControllerRef getAllAboveContainersForController:weakListControllerRef set:receivers];
+										[receivers removeObject:self]; //don't send to ourself
+										[weakListControllerRef sendSignal:hideSettings toObject:receivers.allObjects];
 									}
 								}
 							}];
@@ -441,6 +463,26 @@
 								articleAction = addArticleToArchive;
 								return [UISwipeActionsConfiguration configurationWithActions:@[articleAction, getArticleUrl, getImageUrl]];
 							}];
+							
+							[creator create:@selector(tableView:didSelectRowAtIndexPath:) with:^(NSObject *self, UITableView *table, NSIndexPath *indexPath){
+								MenuModel *modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
+								NewsListTableViewCell *cell = (NewsListTableViewCell*)[table cellForRowAtIndexPath:indexPath];
+								switch (modelMenu.onCellClicked) {
+								case EActionOnClick_Open:
+									[cell.open sendActionsForControlEvents: UIControlEventTouchUpInside];
+									break;
+								case EActionOnClick_Safari:
+									[cell.openInSafari sendActionsForControlEvents: UIControlEventTouchUpInside];
+									break;
+								case EActionOnClick_Extend:
+									[cell.extendCell sendActionsForControlEvents: UIControlEventTouchUpInside];
+									break;
+								case EActionOnClick_Nothing:
+								
+									return;
+								}
+							}];
+							
 				  }];
 	
 	[_delegate spExtend:kArticles defaultValue:nil setter:nil getter:nil];

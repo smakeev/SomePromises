@@ -11,24 +11,26 @@
 
 const NSTimeInterval minRequestInteval = 1800;
 
-NSString * const apiKey = @"c6d8415f12004b5da670e404fe85e7e8"; /* @"8b04ac92772b474e95dafe816feef298";*/
-NSString * const mainURL = @"https://newsapi.org/v2/";
-NSString * const topNewsPromise = @"getNewsPromise";
+NSString * const apiKey             = @"c6d8415f12004b5da670e404fe85e7e8"; /* @"8b04ac92772b474e95dafe816feef298";*/
+NSString * const mainURL            = @"https://newsapi.org/v2/";
+NSString * const topNewsPromise     = @"getNewsPromise";
 NSString * const imageLoaderPromise = @"imageLoaderPromise";
 
 //events
-NSString * const modelRecreated = @"ModelRecreatedEvent";
-NSString * const modelArticleAdded = @"ModelArticleAddedEvent";
-NSString * const waitingForPredownloadedPage = @"WaitingForPredownloadedPage";
+NSString * const modelRecreated                = @"ModelRecreatedEvent";
+NSString * const modelArticleAdded             = @"ModelArticleAddedEvent";
+NSString * const waitingForPredownloadedPage   = @"WaitingForPredownloadedPage";
 NSString * const expectedPredownloadedPageCame = @"ExpectedPredownloadedPageCame";
 
 //signals
-NSString * const selectArticle = @"SelectArticleSignal";
-NSString * const unselectArticle = @"UnselectArticleSignal";
-NSString * const readyToGetNewPage = @"ReadyToGetNewPage";
-NSString * const optionsPressed = @"OptionsPressed";
-NSString * const sizeChangingAsked = @"SizeChangingAsked";
+NSString * const selectArticle           = @"SelectArticleSignal";
+NSString * const unselectArticle         = @"UnselectArticleSignal";
+NSString * const readyToGetNewPage       = @"ReadyToGetNewPage";
+NSString * const optionsPressed          = @"OptionsPressed";
+NSString * const sizeChangingAsked       = @"SizeChangingAsked";
 NSString * const mainScreenChangedSignal = @"MainScreenChangedSignal";
+NSString * const hideOptions             = @"hideOptions";
+NSString * const showOptions             = @"showOptions";
 
 //accessors
 

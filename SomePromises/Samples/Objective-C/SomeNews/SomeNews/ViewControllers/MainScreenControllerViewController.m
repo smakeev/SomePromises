@@ -202,11 +202,39 @@ typedef NS_ENUM(NSInteger, ControllerState)
 		return YES;
 	}
 	
+	if([signal.name isEqualToString:hideOptions])
+	{
+		return YES;
+	}
+	
+	if([signal.name isEqualToString:showOptions])
+	{
+		return YES;
+	}
+	
 	return NO;
 }
 
  - (void)handleTheSignal:(SomePromiseSignal*)signal
  {
+ 	if([signal.name isEqualToString:showOptions])
+ 	{
+		if (_optionsPresenter.view.hidden) {
+			_optionsPresenter.view.hidden = NO;
+		}
+ 		return;
+	}
+ 
+ 	if([signal.name isEqualToString:hideOptions])
+ 	{
+ 		if(self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact || _currentState == ELeft) {
+			if (!_optionsPresenter.view.hidden) {
+				_optionsPresenter.view.hidden = YES;
+			}
+		}
+ 		return;
+	}
+ 
  	if([signal.name isEqualToString:optionsPressed])
  	{
 		_optionsPresenter.view.hidden = !_optionsPresenter.view.hidden;
