@@ -211,11 +211,11 @@
 																	  }];
 																	  //protocol method
 																	  
-																	  [creator override:@selector(testProtocolMethod) with:^(id self){
+																	  [creator create:@selector(testProtocolMethod) with:^(id self){
 																	  	NSLog(@"testProtocolMethod");
 																	  }];
 																	  
-																	  [creator override:@selector(test2ProtocolMethod) with:^(id self){
+																	  [creator create:@selector(test2ProtocolMethod) with:^(id self){
 																	  	NSLog(@"test2ProtocolMethod");
 																	  }];
 																  }];
@@ -264,11 +264,11 @@
 																	 	return self;
 																	}];
 																	 
-																	 [creator override:@selector(tableView:numberOfRowsInSection:) with:^NSInteger(NSObject *self, UITableView *table, NSInteger section){
+																	 [creator create:@selector(tableView:numberOfRowsInSection:) with:^NSInteger(NSObject *self, UITableView *table, NSInteger section){
 																		 return [self.spGet(@"_lines") integerValue];
 																	  }];
 																	  
-																	[creator override:@selector(tableView:cellForRowAtIndexPath:) with:^UITableViewCell*(NSObject *self, UITableView *table, NSIndexPath *indexPath){
+																	[creator create:@selector(tableView:cellForRowAtIndexPath:) with:^UITableViewCell*(NSObject *self, UITableView *table, NSIndexPath *indexPath){
 																		UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:@"testCell"];
 																		if(cell == nil)
 																		{
