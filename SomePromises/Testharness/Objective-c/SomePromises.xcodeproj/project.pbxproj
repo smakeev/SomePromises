@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B61720402265F7CE00BE797B /* CoRoutineTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B617203F2265F7CE00BE797B /* CoRoutineTestViewController.m */; };
 		B617AADE21D6A7140088375A /* SPAsyncAwait.m in Sources */ = {isa = PBXBuildFile; fileRef = B617AADD21D6A7140088375A /* SPAsyncAwait.m */; };
 		B61A37F82264DE7D006C1702 /* SomePromiseCoRoutine.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A37F72264DE7D006C1702 /* SomePromiseCoRoutine.m */; };
 		B62171F221C965040064AB9C /* SomePromiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B62171F121C965040064AB9C /* SomePromiseGenerator.m */; };
@@ -66,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B617203E2265F7CE00BE797B /* CoRoutineTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoRoutineTestViewController.h; sourceTree = "<group>"; };
+		B617203F2265F7CE00BE797B /* CoRoutineTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoRoutineTestViewController.m; sourceTree = "<group>"; };
 		B617AADD21D6A7140088375A /* SPAsyncAwait.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAsyncAwait.m; sourceTree = "<group>"; };
 		B61A37F62264DE7D006C1702 /* SomePromiseCoRoutine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomePromiseCoRoutine.h; sourceTree = "<group>"; usesTabs = 1; };
 		B61A37F72264DE7D006C1702 /* SomePromiseCoRoutine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomePromiseCoRoutine.m; sourceTree = "<group>"; usesTabs = 1; };
@@ -328,6 +331,8 @@
 				B626ED3121AEFF8C00C81BF2 /* TestFunctors.m */,
 				B62171F321C969940064AB9C /* GeneratorTestViewController.h */,
 				B62171F421C969940064AB9C /* GeneratorTestViewController.m */,
+				B617203E2265F7CE00BE797B /* CoRoutineTestViewController.h */,
+				B617203F2265F7CE00BE797B /* CoRoutineTestViewController.m */,
 			);
 			path = "Objective-c";
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				B63129F621432DEA00CFB6E2 /* SPFabricTestViewController.m in Sources */,
 				B6312A0F21432DEA00CFB6E2 /* SeventhViewController.m in Sources */,
 				B63129F321432DEA00CFB6E2 /* SomePromiseSignal.m in Sources */,
+				B61720402265F7CE00BE797B /* CoRoutineTestViewController.m in Sources */,
 				B6312A1121432DEA00CFB6E2 /* AppDelegate.m in Sources */,
 				B6312A1421432DEA00CFB6E2 /* RetryTestViewController.m in Sources */,
 				B63129FE21432DEA00CFB6E2 /* SomePromiseThreadTestViewController.m in Sources */,
