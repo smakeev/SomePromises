@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B617AADE21D6A7140088375A /* SPAsyncAwait.m in Sources */ = {isa = PBXBuildFile; fileRef = B617AADD21D6A7140088375A /* SPAsyncAwait.m */; };
+		B61A37F82264DE7D006C1702 /* SomePromiseCoRoutine.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A37F72264DE7D006C1702 /* SomePromiseCoRoutine.m */; };
 		B62171F221C965040064AB9C /* SomePromiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B62171F121C965040064AB9C /* SomePromiseGenerator.m */; };
 		B62171F521C969940064AB9C /* GeneratorTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62171F421C969940064AB9C /* GeneratorTestViewController.m */; };
 		B626ED2F21AEFDBC00C81BF2 /* SomePromiseFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = B626ED2E21AEFDBC00C81BF2 /* SomePromiseFunctor.m */; };
@@ -66,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		B617AADD21D6A7140088375A /* SPAsyncAwait.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAsyncAwait.m; sourceTree = "<group>"; };
+		B61A37F62264DE7D006C1702 /* SomePromiseCoRoutine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomePromiseCoRoutine.h; sourceTree = "<group>"; usesTabs = 1; };
+		B61A37F72264DE7D006C1702 /* SomePromiseCoRoutine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomePromiseCoRoutine.m; sourceTree = "<group>"; usesTabs = 1; };
 		B62171F021C965040064AB9C /* SomePromiseGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomePromiseGenerator.h; sourceTree = "<group>"; };
 		B62171F121C965040064AB9C /* SomePromiseGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomePromiseGenerator.m; sourceTree = "<group>"; };
 		B62171F321C969940064AB9C /* GeneratorTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratorTestViewController.h; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				B626ED2E21AEFDBC00C81BF2 /* SomePromiseFunctor.m */,
 				B62171F021C965040064AB9C /* SomePromiseGenerator.h */,
 				B62171F121C965040064AB9C /* SomePromiseGenerator.m */,
+				B61A37F62264DE7D006C1702 /* SomePromiseCoRoutine.h */,
+				B61A37F72264DE7D006C1702 /* SomePromiseCoRoutine.m */,
 				B6F8059821D2B24D00310E34 /* SPAsyncAwait.h */,
 				B617AADD21D6A7140088375A /* SPAsyncAwait.m */,
 				B6A1950621F8E62300D17D84 /* SPActor.h */,
@@ -427,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6312A0E21432DEA00CFB6E2 /* SixthViewController.m in Sources */,
+				B61A37F82264DE7D006C1702 /* SomePromiseCoRoutine.m in Sources */,
 				B63129F621432DEA00CFB6E2 /* SPFabricTestViewController.m in Sources */,
 				B6312A0F21432DEA00CFB6E2 /* SeventhViewController.m in Sources */,
 				B63129F321432DEA00CFB6E2 /* SomePromiseSignal.m in Sources */,

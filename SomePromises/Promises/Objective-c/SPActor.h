@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype) queueActor:(dispatch_queue_t) queue;
 + (instancetype) threadActor:(SomePromiseThread*)thread;
 + (instancetype) mainActor;
-- (id) get:(NSString*) key;
+- (id _Nullable) get:(NSString*) key;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -29,6 +29,7 @@
 #import "SomePromiseMayBe.h"
 #import "SomePromiseFunctor.h"
 #import "SomePromiseGenerator.h"
+#import "SomePromiseCoRoutine.h"
 #import "SPAsyncAwait.h"
 #import "SPActor.h"
 

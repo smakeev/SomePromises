@@ -31,6 +31,8 @@
 
 @implementation SPActor
 
+- (id) get:(NSString*) key { [self doesNotRecognizeSelector:_cmd]; return nil; }
+
 + (instancetype) queueActor:(dispatch_queue_t) queue {
 	SPActor *_self = [[self alloc] init];
 	
@@ -123,7 +125,7 @@
 			result = [self->_actor valueForKey:key];
 		}];
 	} else {
-		dispatch_async(self->_actor.queue, ^{
+		dispatch_sync(self->_actor.queue, ^{
 			result = [self->_actor valueForKey:key];
 		});
 	}
