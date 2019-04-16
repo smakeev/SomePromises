@@ -23,6 +23,7 @@
 
 @property (atomic) BOOL done;
 @property (nonatomic) BOOL runningTask;
+@property (nonatomic) BOOL syncTask;
 @property (nonatomic, readonly) NSCondition* condition;
 @property (nonatomic, readonly) BOOL isActive;
 
@@ -218,7 +219,7 @@
     do
     {
 		[_condition lock];
-        while(!self.runningTask && _timersCount == 0)
+        while(!self.runningTask && _timersCount == 0 && !self.syncTask)
         {
             _isActive = NO;
 			[_condition wait];
@@ -436,9 +437,13 @@
 	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[block copy] waitUntilDone:NO];
 	[_thread.condition lock];
 	_thread.runningTask = YES;
+	_thread.syncTask    = YES;
 	[_thread.condition signal];
 	[_thread.condition unlock];
 	[_thread performSelector:@selector(runBlock:) onThread:_thread withObject:[^{/*empty*/} copy] waitUntilDone:YES];
+	[_thread.condition lock];
+	_thread.syncTask    = NO;
+	[_thread.condition unlock];
 }
 
 - (void) performInvocation:(NSInvocation*)invocation

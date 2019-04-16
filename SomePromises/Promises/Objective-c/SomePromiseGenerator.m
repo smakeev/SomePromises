@@ -53,14 +53,11 @@
 @interface SPGenerator () <SPGeneratorYielder>
 {
 	NSCondition* _condition;
-	//BOOL _yieldConditonReady;
 	NSCondition* _returnCondition;
-	//BOOL _returnConditionReady;
 	dispatch_queue_t _queue;
 	__nullable id _lastResult;
 	BOOL _done;
 	SPGeneratorResultProvider *_lastResultProvider;
-	
 }
 
 @property (atomic) BOOL returnConditionReady;
@@ -159,13 +156,13 @@
 	{
 		self.lastResult = whatToReturn;
 	}
-	self->_returnConditionReady = YES;
+	self.returnConditionReady = YES;
 	[self->_returnCondition signal];
-	while(!_yieldConditonReady)
+	while(!self.yieldConditonReady)
 	{
 		[_condition wait];
 	}
-	_yieldConditonReady = NO;
+	self.yieldConditonReady = NO;
 	return self.lastResultProvider;
 }
 
@@ -198,20 +195,20 @@
 		dispatch_async(_queue, ^{
 			self.lastResult = self.generatorBlock(self, self.params);
 			self.done = YES;
-			self->_returnConditionReady = YES;
+			self.returnConditionReady = YES;
 			[self->_returnCondition signal];
 		});
 	}
 	else
 	{
-		_yieldConditonReady = YES;
+		self.yieldConditonReady = YES;
 		[_condition signal];
 	}
-	while (!_returnConditionReady)
+	while (!self.returnConditionReady)
 	{
 		[_returnCondition wait];
 	}
-	_returnConditionReady = NO;
+	self.returnConditionReady = NO;
 	SPGeneratorResult *result = [[SPGeneratorResult alloc] init];
 	result.done = self.done;
 	result.value = self.lastResult;

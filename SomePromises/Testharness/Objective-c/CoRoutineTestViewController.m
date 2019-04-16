@@ -37,7 +37,7 @@
         return Void;
     }];
 
-    coRoutine = [[SPCoRoutine alloc] initWithGenerators:@[[builder2 build:nil]] delta: 0.002 andRoutine:^(NSNumber *value){
+    coRoutine = [[SPCoRoutine alloc] initWithGenerators:@[[builder2 build:nil]] thread: [SomePromiseThread threadWithName:@"CoThread"] step: 3 andRoutine:^(NSNumber *value){
         NSLog(@"!!%@", value);
         return value;
     }];
