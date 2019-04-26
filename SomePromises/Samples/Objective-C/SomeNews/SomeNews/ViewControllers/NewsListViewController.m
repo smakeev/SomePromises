@@ -146,9 +146,9 @@
 							[creator create:@selector(imageTapped:) with:^(NSObject *self, UITapGestureRecognizer *sender){
 								NSString *additionalText = nil;
 								UIImageView *target = (UIImageView*)sender.view;
-								if(target.spHas(@"_errorText"))
+								if(target.image.spHas(@"_errorText"))
 								{
-									additionalText = target.spGet(@"_errorText");
+									additionalText = target.image.spGet(@"_errorText");
 								}
 								[weakListControllerRef showAlertViewWithContentView:^UIView*(CGSize desiredSize){
 									UIView *targetView = [weakListControllerRef whereToPresent];
@@ -222,17 +222,6 @@
 									cell.image.imageUrl = urlToImage;
 								}
 
-								if(item.imageErrorText)
-								{
-									if(cell.image.spHas(@"_errorText"))
-									{
-										cell.image.spSet(@"_errorText", item.imageErrorText);
-									}
-									else
-									{
-										cell.image.spExtend(@"_errorText", item.imageErrorText, nil, nil);
-									}
-								}
 								else if(cell.image.spHas(@"_errorText"))
 								{
 									cell.image.spUnset(@"_errorText");

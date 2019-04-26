@@ -23,7 +23,6 @@
 @property (nonatomic) NSString *date;
 @property (nonatomic) NSString *content;
 @property (nonatomic) NSInteger index;
-@property (nonatomic) NSString *imageErrorText;
 
 @end
 

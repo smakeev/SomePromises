@@ -20,7 +20,6 @@
 @property (nonatomic, readonly) NSString *date;
 @property (nonatomic, readonly) NSString *content;
 @property (nonatomic, readonly) NSInteger index;
-@property (nonatomic, readonly) NSString *imageErrorText;
 
 + (instancetype) createWithJSON:(NSDictionary*)JSON index:(NSInteger)index;
 
