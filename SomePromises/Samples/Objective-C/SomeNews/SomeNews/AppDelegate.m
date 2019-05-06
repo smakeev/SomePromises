@@ -66,6 +66,7 @@
 		guard(self) else {return;}
 		if([name isEqualToString:topNewsPromise])
 		{
+			@releseNetworkIndicator
 			[self.model addNextPageWithJSONAndCount:result];
 			return;
 		}

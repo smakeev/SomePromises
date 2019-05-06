@@ -48,10 +48,11 @@
 	NSString *requestURL = [_url copy];
 	
 	requestURL = [self rightURL:requestURL];
-
+	@retainNetworkIndicator
 	_imageDownloader = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: requestURL] completionHandler:^(NSData *data,
 							NSURLResponse *response,
 							NSError *error) {
+		@releseNetworkIndicator
 		//check if this is our needed result (not one from previous position or cancel)
 		__block BOOL shouldWeProcide = YES;
 		@sp_avoidblockretain(self)

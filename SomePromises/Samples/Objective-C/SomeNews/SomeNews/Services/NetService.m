@@ -252,12 +252,12 @@
 		
 			if ([fullResult[@"status"] isEqualToString:@"error"])
 			{
-				NSLog(@"#### ERROR");
+				NSLog(@"#### ERROR in result");
 				//@TODO: create error by response
 			}
 			else
 			{
-				NSLog(@"#### ERROR");
+				NSLog(@"#### ERROR  general");
 				//@TODO: general error
 			}
 		}
