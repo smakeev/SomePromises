@@ -108,7 +108,7 @@
 	[((AppDelegate*)([UIApplication sharedApplication].delegate)) startUpdate];
 }
 
-- (void) setupWithViewModel:(id<ArticlesModelViewProtocol>)viewModel
+- (void) setupWithViewModel:(NSObject<ArticlesModelViewProtocol>*)viewModel
 {
 	_selectedArticleIndex = kNoSelection;
 	self.extendedCells = [NSMutableArray new];
@@ -504,6 +504,12 @@
 			});
 		};
 	@sp_avoidend(self)
+	
+	viewModel.spOn(stopUpdate, self, ^(NSDictionary *msg) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self->_table.refreshControl endRefreshing];
+		});
+	});
 	
 	if(self.viewType == EViewType_TOP)
 	{

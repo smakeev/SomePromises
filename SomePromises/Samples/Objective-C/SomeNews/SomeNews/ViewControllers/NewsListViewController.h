@@ -14,6 +14,6 @@
 
 @property (nonatomic) ArticlesViewType viewType;
 
-- (void) setupWithViewModel:(id<ArticlesModelViewProtocol>)viewModel;
+- (void) setupWithViewModel:(NSObject<ArticlesModelViewProtocol>*)viewModel;
 
 @end

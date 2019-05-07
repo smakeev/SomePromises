@@ -39,6 +39,7 @@ extern NSString * const topNewsPromise;
 extern NSString * const imageLoaderPromise;
 
 //events
+extern NSString * const stopUpdate;
 extern NSString * const modelRecreated;
 extern NSString * const modelArticleAdded;
 extern NSString * const waitingForPredownloadedPage;

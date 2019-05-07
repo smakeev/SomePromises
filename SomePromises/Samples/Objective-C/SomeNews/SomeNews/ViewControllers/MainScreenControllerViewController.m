@@ -57,18 +57,18 @@ typedef NS_ENUM(NSInteger, ControllerState)
 + (void) load
 {
 	static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-    	[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(AlertsPresenterProtocol) extention:[AlertsPresenterProtocolStrategy class] whereSelf:@protocol(NSObject)];
+	dispatch_once(&onceToken, ^{
+		[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(AlertsPresenterProtocol) extention:[AlertsPresenterProtocolStrategy class] whereSelf:@protocol(NSObject)];
 		[SomePromiseUtils makeProtocolOriented:[self class] protocol:@protocol(Containerable) extention:[ContainerableProtocolStrategy class] whereSelf:@protocol(NSObject)];
-    });
+	});
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    embededControllers = [SPArray new];
-    if(self.leftController && !_leftContainerInitialized)
-    {
-    	[self setupLeftContainer];
+	[super viewDidLoad];
+	embededControllers = [SPArray new];
+	if(self.leftController && !_leftContainerInitialized)
+	{
+		[self setupLeftContainer];
 	}
 	
 	if(self.rightController && !_rightContainerInitialized)

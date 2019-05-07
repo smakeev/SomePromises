@@ -17,6 +17,7 @@ NSString * const topNewsPromise     = @"getNewsPromise";
 NSString * const imageLoaderPromise = @"imageLoaderPromise";
 
 //events
+NSString * const stopUpdate                    = @"StopUpdate";
 NSString * const modelRecreated                = @"ModelRecreatedEvent";
 NSString * const modelArticleAdded             = @"ModelArticleAddedEvent";
 NSString * const waitingForPredownloadedPage   = @"WaitingForPredownloadedPage";

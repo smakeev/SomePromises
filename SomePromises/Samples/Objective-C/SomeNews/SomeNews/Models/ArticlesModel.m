@@ -114,12 +114,7 @@
 - (void) recallSubscribers
 {
 	dispatch_sync(_sync, ^{
-		[self spTrigger:modelRecreated message:nil];
-		//create new first page.
-		for (SPArrayElementWrapper *article in self->_articles)
-		{
-			[self spTrigger:modelArticleAdded message:@{@"article" : article.value}];
-		}
+		[self spTrigger:stopUpdate message:nil];
 	});
 }
 

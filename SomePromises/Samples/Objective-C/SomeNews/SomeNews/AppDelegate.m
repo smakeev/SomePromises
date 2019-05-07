@@ -106,14 +106,15 @@
 {
 	if(_cashedRequestsInfo == nil)
 	{
-		_cashedRequestsInfo = [[RequestService alloc] init];
-		_cashedRequestsInfo.current = [[RequestPresenter alloc] init];
+		_cashedRequestsInfo                       = [[RequestService alloc] init];
+		_cashedRequestsInfo.current               = [[RequestPresenter alloc] init];
 		_cashedRequestsInfo.current.requestSentAt = [NSDate date];
+		
 		_cashedRequestsInfo.current.language = [Services.user getLanguage];
-		_cashedRequestsInfo.current.country = [Services.user getCountry];
+		_cashedRequestsInfo.current.country  = [Services.user getCountry];
 		_cashedRequestsInfo.current.category = [Services.user getCategory];
-		_cashedRequestsInfo.current.querry = [Services.user getQuery];
-		_cashedRequestsInfo.current.source = [Services.user getSource];
+		_cashedRequestsInfo.current.querry   = [Services.user getQuery];
+		_cashedRequestsInfo.current.source   = [Services.user getSource];
 	}
 	else
 	{
@@ -131,13 +132,14 @@
 		}
 		else
 		{ //keep new request as current
-			_cashedRequestsInfo.current = [[RequestPresenter alloc] init];
+			_cashedRequestsInfo.current               = [[RequestPresenter alloc] init];
 			_cashedRequestsInfo.current.requestSentAt = [NSDate date];
+			
 			_cashedRequestsInfo.current.language = [Services.user getLanguage];
-			_cashedRequestsInfo.current.country = [Services.user getCountry];
+			_cashedRequestsInfo.current.country  = [Services.user getCountry];
 			_cashedRequestsInfo.current.category = [Services.user getCategory];
-			_cashedRequestsInfo.current.querry = [Services.user getQuery];
-			_cashedRequestsInfo.current.source = [Services.user getSource];
+			_cashedRequestsInfo.current.querry   = [Services.user getQuery];
+			_cashedRequestsInfo.current.source   = [Services.user getSource];
 		}
 	}
 	[_services.images clear];

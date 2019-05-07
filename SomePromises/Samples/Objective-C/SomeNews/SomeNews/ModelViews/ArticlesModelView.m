@@ -86,6 +86,10 @@
 			self.articlesToShowBySources = [self->_articlesRepresentaition copy];
 			
 		});
+		
+		articles.spOn(stopUpdate, self, ^(NSDictionary *msg) {
+			[self spTrigger:stopUpdate message:nil];
+		});
 		@sp_avoidend(self)
 	}
 
