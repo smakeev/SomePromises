@@ -156,13 +156,17 @@
 	{
 		self.lastResult = whatToReturn;
 	}
+	[_returnCondition lock];
 	self.returnConditionReady = YES;
 	[self->_returnCondition signal];
+	[_returnCondition unlock];
 	while(!self.yieldConditonReady)
 	{
 		[_condition wait];
 	}
+	[_condition lock];
 	self.yieldConditonReady = NO;
+	[_condition unlock];
 	return self.lastResultProvider;
 }
 
@@ -195,20 +199,26 @@
 		dispatch_async(_queue, ^{
 			self.lastResult = self.generatorBlock(self, self.params);
 			self.done = YES;
+			[self->_returnCondition lock];
 			self.returnConditionReady = YES;
 			[self->_returnCondition signal];
+			[self->_returnCondition unlock];
 		});
 	}
 	else
 	{
+		[_condition lock];
 		self.yieldConditonReady = YES;
 		[_condition signal];
+		[_condition unlock];
 	}
 	while (!self.returnConditionReady)
 	{
 		[_returnCondition wait];
 	}
+	[_returnCondition lock];
 	self.returnConditionReady = NO;
+	[_returnCondition unlock];
 	SPGeneratorResult *result = [[SPGeneratorResult alloc] init];
 	result.done = self.done;
 	result.value = self.lastResult;

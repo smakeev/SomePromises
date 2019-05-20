@@ -79,6 +79,8 @@
 	_modelMenu = ((AppDelegate*)UIApplication.sharedApplication.delegate).modelMenu;
 	_startFromSegmentedControl.selectedSegmentIndex = _modelMenu.startSearch;
 	_onCellSegmentedController.selectedSegmentIndex = _modelMenu.onCellClicked;
+	[self startSearchChanged:_startFromSegmentedControl];
+	[self onCellClickedChanged:_onCellSegmentedController];
 	[_autoHideSwitch setOn:_modelMenu.autoHideSettings];
 }
 
